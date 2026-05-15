@@ -6,7 +6,7 @@
 }
     
 .container {
-   
+  top: 0;
   background: wheat;
   width: 100%;
   overflow-y: hidden;
@@ -14,11 +14,13 @@
   background-repeat: no-repeat;
   background-size: cover;
 
+
 }
 
 
 /* MAIN */
 .main {
+    margin: 0 auto;
   display: flex;
   justify-content: space-between;
   padding: 40px 60px;

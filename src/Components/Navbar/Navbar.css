@@ -8,8 +8,9 @@
 /* NAVBAR */
 
 nav{
+  font-size: large;
    width: 100%;
-    color: #fff;
+    color: #ffffffcb;
     padding: 4px 0;
     position: fixed;
     padding: 20px 60px;
@@ -17,6 +18,7 @@ nav{
     left: 0;
     display: flex;
     align-items: center;
+    background: #f1d8d867;
     justify-content: space-between;
     z-index: 10;
 }
