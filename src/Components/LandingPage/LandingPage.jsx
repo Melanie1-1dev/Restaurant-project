@@ -28,7 +28,7 @@ const LandingPage = () => {
             <p className="to-text">To</p>
 
             <h1>
-              Miss<span>Now</span>
+              Miss<span>More</span>
             </h1>
 
             <h3>Find Your Perfect Stay</h3>
