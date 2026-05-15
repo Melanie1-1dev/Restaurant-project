@@ -8,10 +8,11 @@ const App = () => {
   return (
     <div>
       <Navbar />
-
       <Background />  
+<div className="container">
       <LandingPage />
 
+</div>
     </div>
   )
 }
