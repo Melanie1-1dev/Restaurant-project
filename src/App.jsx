@@ -8,13 +8,11 @@ import CreateAccount from './Components/CreateAccount/CreateAccount';
 const App = () => {
   return (
     <div>
-      <Navbar />
+       <Navbar />
       <Background />  
-<div className="container">
       <LandingPage />
-</div>
       <CreateAccount />
-
+      
     </div>
   )
 }

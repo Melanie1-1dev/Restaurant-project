@@ -1,8 +1,7 @@
 .container {   
   background: wheat;
   width: 100%;
-  height: 100vh;
-  overflow-y: hidden;
+  height: 50vh;
 }
 
 /* NAVBAR */
@@ -10,10 +9,9 @@
 nav{
   font-size: large;
    width: 100%;
-    color: #ffffffcb;
+    color: #1f1c1cdd;
     padding: 4px 0;
     position: fixed;
-    padding: 20px 60px;
     top: 0;
     left: 0;
     display: flex;
