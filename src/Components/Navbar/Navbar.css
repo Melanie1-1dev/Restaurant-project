@@ -1,14 +1,14 @@
 .container {   
   background: wheat;
-  width: 100%;
+  width: 100vw;
   height: 50vh;
 }
 
 /* NAVBAR */
 
 nav{
-  font-size: large;
-   width: 100%;
+    font-size: large;
+    width: 100%;
     color: #1f1c1cdd;
     padding: 4px 0;
     position: fixed;

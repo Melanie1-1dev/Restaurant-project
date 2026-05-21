@@ -1,10 +1,11 @@
 import React from 'react'
 import './Background.css';
 
-const Background = () => {
+const Background = ({children}) => {
   return (
     <div className='container'>
-
+     
+     {children}
 
        { /*maain section*/ }
 
