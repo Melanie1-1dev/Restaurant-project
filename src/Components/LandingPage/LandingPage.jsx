@@ -5,6 +5,8 @@ const LandingPage = () => {
   return (
     <div className="container">
 
+      
+
       {/* LEFT SIDE */}
       <div className="left-side">
 

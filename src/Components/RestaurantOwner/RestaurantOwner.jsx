@@ -6,6 +6,8 @@ const RestaurantOwner = () => {
   return (
     <div className="restaurant-page">
       <div className="overlay">
+
+        
         {/* LEFT SECTION */}
         <div className="left-section">
           <div className="logo">
