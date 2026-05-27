@@ -6,6 +6,7 @@ import LandingPage from './Components/LandingPage/LandingPage'
 import CreateAccount from './Components/CreateAccount/CreateAccount'
 import RestaurantOwner from './Components/RestaurantOwner/RestaurantOwner'
 import RestaurantPage from './Components/RestaurantPage/RestaurantPage'
+import Orders from './Components/Orders/Orders'
 
 const App = () => {
   return (
@@ -22,7 +23,7 @@ const App = () => {
 
         <Route path="/restaurant-owner" element={<RestaurantOwner />} />
         <Route path="/restaurant-page" element={<RestaurantPage />} />   
-
+       <Route path="/orders" element={<Orders />} />
       </Routes>
 
     </BrowserRouter>
