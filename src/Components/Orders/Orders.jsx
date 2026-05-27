@@ -110,7 +110,51 @@ export default function Orders() {
               </button>
             ))}
           </nav>
-     
+          <div className="orders-nav-bottom">
+            {NAV_BOTTOM.map((item) => (
+              <button
+                key={item.label}
+                className="orders-nav-item"
+                onClick={() => setActiveNav(item.label)}
+              >
+                <span className="orders-nav-icon">{item.icon}</span>
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </aside>
+
+        {/* Main */}
+        <main className="orders-main">
+          {/* Order List Section */}
+          <div className="orders-list-section">
+            <div className="orders-list-header">
+              <div>
+                <div className="orders-list-title">Orders</div>
+                <div className="orders-timestamp">{getNow()}</div>
+              </div>
+            </div>
+
+            {/* Filter Tabs */}
+            <div className="orders-filters">
+              {FILTERS.map((f) => (
+                <button
+                  key={f}
+                  className={`orders-filter-btn ${activeFilter === f ? FILTER_CLASS[f] : "inactive"}`}
+                  onClick={() => setActiveFilter(f)}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+
+          
+              <button className="orders-explore-btn">
+                Explore more
+                <div className="orders-explore-arrow">›</div>
+              </button>
+            </div>
+          </div>
         </main>
       </div>
     </div>
