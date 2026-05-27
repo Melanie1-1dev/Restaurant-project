@@ -148,7 +148,65 @@ export default function Orders() {
               ))}
             </div>
 
-          
+            {/* Order Cards */}
+            <div className="orders-scroll">
+              {filteredOrders.map((order) => (
+                <div
+                  key={order.id}
+                  className={`order-card${selectedOrder === order.id ? " selected" : ""}`}
+                  onClick={() => setSelectedOrder(order.id === selectedOrder ? null : order.id)}
+                >
+                  <div className="order-label">{order.label}</div>
+                  <img
+                    src={order.image}
+                    alt={order.name}
+                    className="order-card-img"
+                    onError={(e) => { e.target.style.background = "#e8e0d8"; e.target.src = ""; }}
+                  />
+                  <div className="order-card-info">
+                    <div className="order-card-name">{order.name}</div>
+                    <div className="order-card-price">{order.price}</div>
+                  </div>
+                  <div className="order-card-right">
+                    <div className="order-card-type">{order.type}</div>
+                    <div className="order-card-phone">{order.phone}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Panel */}
+          <div className="orders-right-panel">
+            {/* Stats */}
+            <div className="orders-stats">
+              {STATS.map((s) => (
+                <div key={s.label} className="orders-stat-row">
+                  <span className="orders-stat-label">{s.label}</span>
+                  <span className="orders-stat-value">{s.value}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Add Order */}
+            <div className="orders-add-panel">
+              <div className="orders-add-title">Add Order</div>
+              <div className="orders-add-subtitle">
+                <span>Create new Order</span>
+                <div className="orders-add-plus">+</div>
+              </div>
+
+              <div className="orders-cat-rows">
+                {CATEGORIES.map((cat) => (
+                  <div key={cat} className="orders-cat-row">
+                    <span className="orders-cat-name">{cat}</span>
+                    <span className={`orders-cat-badge ${cat === "Drink" ? "default-badge" : "new-badge"}`}>
+                      {cat === "Drink" ? "Default" : "New"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
               <button className="orders-explore-btn">
                 Explore more
                 <div className="orders-explore-arrow">›</div>
