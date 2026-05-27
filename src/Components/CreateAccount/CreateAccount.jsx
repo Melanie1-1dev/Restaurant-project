@@ -1,15 +1,35 @@
 
 import React from 'react'
 import './CreateAccount.css';
+import { Link } from 'react-router-dom';
 
 const CreateAccount = () => {
   return (
+    <div>
+       <div className="navbar">
+      
+              <div className="logo">
+                <h1>
+                  Miss<span>More</span>
+                </h1>
+              </div>
+      
+              <ul className="nav-links">
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/Landing">About</Link></li>
+                <li><Link to="/Create-account">Services</Link></li>
+                <li><Link to="/Restaurant-Owner">Contact</Link></li>
+              </ul>
+      
+            </div>
     <div className="landing-page">
       
      
 
       {/* Main Section */}
       <div className="main-container">
+
+        
 
         {/* Left Side */}
         <div className="left-section">
@@ -70,6 +90,8 @@ const CreateAccount = () => {
 
       </div>
     </div>
+      </div>
+
   )
 }
 

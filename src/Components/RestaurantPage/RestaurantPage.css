@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  background: #f4f4f4;
+}
+
+/* LEFT SIDE */
+.left {
+  width: 35%;
+  padding: 40px;
+  background: url("https://images.unsplash.com/photo-1540189549336-e6e99c3679fe") center/cover;
+  color: black;
+}
+
+.logo {
+  font-size: 28px;
+}
+
+.logo span {
+  color: orange;
+}
+
+.section {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* RIGHT SIDE */
+.right {
+  width: 65%;
+  padding: 30px;
+  background: white;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.tab {
+  padding: 8px 15px;
+  border: none;
+  background: #eee;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: orange;
+  color: white;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input,
+textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.upload {
+  padding: 20px;
+  border: 2px dashed #ccc;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.addMore {
+  background: orange;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 6px;
+}
+
+.addOrder {
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Background = () => {
   return (
 
-    <div className="container">
+    <div className="contaiiner">
 
       {/* NAVBAR */}
       <div className="navbar">
@@ -25,7 +25,8 @@ const Background = () => {
       </div>
 
 
-      {/* MAIN SECTION */}
+<div className="container">
+        {/* MAIN SECTION */}
       <div className="main">
 
         {/* LEFT SIDE */}
@@ -76,6 +77,7 @@ const Background = () => {
 
       </div>
 
+</div>
     </div>
 
   )

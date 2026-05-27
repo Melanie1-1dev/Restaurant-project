@@ -5,6 +5,7 @@ import Background from './Components/Background/Background'
 import LandingPage from './Components/LandingPage/LandingPage'
 import CreateAccount from './Components/CreateAccount/CreateAccount'
 import RestaurantOwner from './Components/RestaurantOwner/RestaurantOwner'
+import RestaurantPage from './Components/RestaurantPage/RestaurantPage'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/create-account" element={<CreateAccount />} />
 
         <Route path="/restaurant-owner" element={<RestaurantOwner />} />
+        <Route path="/restaurant-page" element={<RestaurantPage />} />   
 
       </Routes>
 

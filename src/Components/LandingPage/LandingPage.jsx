@@ -1,13 +1,31 @@
 import React from 'react'
 import './LandingPage.css'
+import { Link } from 'react-router-dom'
+
 
 const LandingPage = () => {
   return (
-    <div className="container">
+    <div>
 
-      
+       <div className="navbar">
 
-      {/* LEFT SIDE */}
+        <div className="logo">
+          <h1>
+            Miss<span>More</span>
+          </h1>
+        </div>
+
+        <ul className="nav-links">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/Landing">About</Link></li>
+          <li><Link to="/Create-account">Services</Link></li>
+          <li><Link to="/Restaurant-Owner">Contact</Link></li>
+        </ul>
+
+      </div>
+
+     <div className="container">
+       {/* LEFT SIDE */}
       <div className="left-side">
 
         <div className="oval">
@@ -120,6 +138,7 @@ const LandingPage = () => {
         </button>
 
       </div>
+     </div>
 
     </div>
   )

@@ -16,6 +16,7 @@ body{
     min-height: 100vh;
     display: flex;
     overflow-x: hidden;
+    flex-direction: row;
 
 }
 
@@ -103,6 +104,8 @@ body{
     width: 55%;
     position: relative;
     overflow: hidden;
+    display: flex;
+    height: 100vh;
 }
 
 .right-image{

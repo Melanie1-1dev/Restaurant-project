@@ -37,7 +37,7 @@
 
 /* LOGO */
 .logo h1{
-    color: white;
+    color: rgb(4, 1, 1);
     font-size: 65px;
     font-weight: bold;
 }
@@ -112,10 +112,15 @@
 
 /* LOGIN CARD */
 .login-card{
-    width: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: rgb(219, 191, 134);
-
+    height: 100vh;
     padding: 50px 30px;
+    font-size: 26px;
+
+
 
     border-radius: 10px;
 }
@@ -134,7 +139,7 @@
 .login-card p{
     text-align: center;
     color: white;
-
+    font-size: 1em;
     margin-bottom: 15px;
 }
 
@@ -143,14 +148,17 @@
 .login-card label{
     color: rgb(92, 85, 85);
     font-size: 15px;
+    margin-left: 20px;
 }
 
 
 /* INPUTS */
 .login-card input{
-    width: 100%;
+    width: 50%;
+    align-self: center;
+    display: block;
 
-    padding: 12px;
+    padding: 20px;
     margin-top: 8px;
     margin-bottom: 15px;
 
@@ -161,7 +169,9 @@
 
 /* BUTTON */
 .login-card button{
-    width: 100%;
+    width: 50%;
+    align-self: center;
+    display: block;
 
     padding: 12px;
     margin-top: 10px;

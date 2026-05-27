@@ -1,10 +1,30 @@
 // RestaurantOwner.jsx
 import React from "react";
 import "./RestaurantOwner.css";
+import { Link } from "react-router-dom";
 
 const RestaurantOwner = () => {
   return (
-    <div className="restaurant-page">
+    <div className="restaurant-pag">
+      <div className="navbar">
+
+        <div className="logo">
+          <h1>
+            Miss<span>More</span>
+          </h1>
+        </div>
+
+        <ul className="nav-links">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/Landing">About</Link></li>
+          <li><Link to="/Create-account">Services</Link></li>
+          <li><Link to="/Restaurant-Owner">Contact</Link></li>
+        </ul>
+
+      </div>
+      <div className="restaurant-page">
+        
+
       <div className="overlay">
 
         
@@ -64,6 +84,8 @@ const RestaurantOwner = () => {
           <button>SEE MORE</button>
         </div>
       </div>
+      </div>
+
     </div>
   );
 };
