@@ -81,7 +81,7 @@ const RestaurantOwner = () => {
 
         {/* BOTTOM BUTTON */}
         <div className="bottom-btn">
-          <button>SEE MORE</button>
+       <Link to="/Restaurant-page"> <button> SEE MORE </button> </Link>
         </div>
       </div>
       </div>

@@ -104,6 +104,7 @@
 
 /* RIGHT SIDE */
 .right{
+
     width: 40%;
     display: flex;
     justify-content: center;
@@ -112,17 +113,16 @@
 
 /* LOGIN CARD */
 .login-card{
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     background-color: rgb(219, 191, 134);
+    opacity: 0.9;
     height: 100vh;
     padding: 50px 30px;
     font-size: 26px;
-
-
-
-    border-radius: 10px;
+    border-radius: 30px;
+    margin-left: 50px;
 }
 
 
@@ -146,9 +146,10 @@
 
 /* LABELS */
 .login-card label{
+    margin-top: 30px;
     color: rgb(92, 85, 85);
     font-size: 15px;
-    margin-left: 20px;
+    margin-left: 200px;
 }
 
 
@@ -181,11 +182,14 @@
 
     background-color: orange;
     color: white;
-
+    transition: 0.5s;    
     font-size: 18px;
     cursor: pointer;
 }
 
 .login-card button:hover{
-    background-color: darkorange;
+    transform: translateX(-20px);
+    background-color: orange;
+    scale: 1.05;
+
 }
