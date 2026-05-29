@@ -1,6 +1,6 @@
 import { useState } from "react";
 import react from "react";
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Menu.css";
 
 const CATEGORIES = ["Drink", "Starter", "Appetizer", "Dessert", "Main"];
@@ -178,3 +178,4 @@ const Menu = () => {
 }
 
 export default Menu;
+

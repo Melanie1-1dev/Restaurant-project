@@ -1,220 +1,225 @@
 import { useState } from "react";
 import "./Orders.css";
 
-const NAV_ITEMS = [
-  { label: "Overview", icon: "◇" },
-  { label: "Tables", icon: "⊤" },
-  { label: "Orders", icon: "☰" },
-  { label: "Menus", icon: "☰" },
-];
+const CATEGORIES = ["Drink", "Starter", "Appetizer", "Dessert", "Main"];
 
-const NAV_BOTTOM = [
-  { label: "Settings", icon: "○" },
-  { label: "My Account", icon: "⌀" },
-];
+const emptyForm = {
+  name: "",
+  ingredients: "",
+  imagePreview: null,
+  price: "",
+};
 
-const CATEGORIES = ["Desert", "Main", "Drink", "Appetizer", "Starter"];
+const Orders = () => {
+  const [activeCategory, setActiveCategory] = useState("Drink");
+  const [form, setForm] = useState(emptyForm);
+  const [notification, setNotification] = useState(null);
 
-const MOCK_ORDERS = Array.from({ length: 10 }, (_, i) => ({
-  id: i + 1,
-  label: `Order ${i + 1}`,
-  name: "Tom yummy *2",
-  price: "2000$",
-  type: "Guest",
-  phone: "0784567825",
-  image: `https://images.unsplash.com/photo-${
-    ["1504674900247-0877df9cc836", "1555939594-58d7cb561ad1",
-     "1546069901-ba9599a7e63c", "1512621776951-a57141f2eefd",
-     "1567620905732-2d1ec7ab7445", "1565299624946-b28f40a0ae38",
-     "1540189549336-e6e99eb4b2a0", "1482049016688-2d3e1b311543",
-     "1540420773420-3366772f4999", "1563379926898-05f4575a45d8"][i]
-  }?w=100&q=80`,
-  status: i < 2 ? "new" : i < 8 ? "waiting" : "rejected",
-}));
+  const notify = (msg, type = "success") => {
+    setNotification({ msg, type });
+    setTimeout(() => setNotification(null), 2800);
+  };
 
-const STATS = [
-  { label: "Delivered", value: 6 },
-  { label: "Waiting", value: 12 },
-  { label: "Rejected", value: 1 },
-  { label: "All", value: 30 },
-];
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () =>
+      setForm((f) => ({ ...f, imagePreview: reader.result }));
+    reader.readAsDataURL(file);
+  };
 
-const FILTERS = ["New", "Delivered", "Rejected", "All"];
-const FILTER_CLASS = { New: "new", Delivered: "delivered", Rejected: "rejected", All: "all" };
+  const handleAddMore = () => {
+    if (!form.name.trim() || !form.price) {
+      notify("Name and price are required.", "error");
+      return;
+    }
+    notify(`"${form.name}" added to ${activeCategory}!`);
+    setForm(emptyForm);
+  };
 
-function getNow() {
-  return new Date().toLocaleDateString("en-GB", {
-    day: "2-digit", month: "long", year: "numeric",
-    hour: "2-digit", minute: "2-digit",
-  });
-}
-
-export default function Orders() {
-  const [activeNav, setActiveNav] = useState("Orders");
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [selectedOrder, setSelectedOrder] = useState(null);
-
-  const filteredOrders = MOCK_ORDERS.filter((o) => {
-    if (activeFilter === "All") return true;
-    if (activeFilter === "New") return o.status === "new";
-    if (activeFilter === "Delivered") return o.status === "delivered";
-    if (activeFilter === "Rejected") return o.status === "rejected";
-    return true;
-  });
+  const handleAddOrder = () => {
+    if (!form.name.trim()) {
+      notify("Please enter a menu item name.", "error");
+      return;
+    }
+    notify(`Order placed for "${form.name}"!`);
+  };
 
   return (
-    <div className="orders-root">
-      {/* Background */}
-      <div className="orders-bg" />
+    <div className="mc-root">
 
-      {/* Top Header */}
-      <header className="orders-header">
-        <div className="orders-logo">Miss<span>More</span></div>
-        <div className="orders-header-title">Orders</div>
-        <div className="orders-header-right">
-          <button className="orders-search-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      {/* Decorative food background images */}
+      <div className="mc-bg-left" />
+      <div className="mc-bg-right" />
+
+      {/* Notification toast */}
+      {notification && (
+        <div className={`mc-toast ${notification.type}`}>
+          {notification.msg}
+        </div>
+      )}
+
+      {/* HEADER */}
+      <header className="mc-header">
+        <div className="mc-logo">Miss<span>More</span></div>
+
+        <div className="mc-header-center">
+          <span className="mc-header-title">Overview</span>
+        </div>
+
+        <div className="mc-header-right">
+          <button className="mc-search-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2">
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
           </button>
-          <div className="orders-header-divider" />
-          <div className="orders-user">
-            <div className="orders-user-text">
-              <div className="orders-user-name">Kagabo</div>
-              <div className="orders-user-role">Jacques</div>
+          <div className="mc-divider" />
+          <div className="mc-user">
+            <div className="mc-user-text">
+              <div className="mc-user-name">Kagabo</div>
+              <div className="mc-user-role">Jacques</div>
             </div>
-            <div className="orders-avatar">
-              <svg width="22" height="22" viewBox="0 0 40 40" fill="none">
-                <circle cx="20" cy="15" r="8" fill="#ccc" />
-                <ellipse cx="20" cy="34" rx="13" ry="9" fill="#ccc" />
+            <div className="mc-avatar">
+              <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="19" stroke="#ccc" strokeWidth="1.5" />
+                <circle cx="20" cy="15" r="7" fill="#ddd" />
+                <ellipse cx="20" cy="33" rx="11" ry="8" fill="#ddd" />
               </svg>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="orders-body">
-        {/* Sidebar */}
-        <aside className="orders-sidebar">
-          <div className="orders-sidebar-logo">Miss<span>More</span></div>
-          <nav className="orders-nav">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.label}
-                className={`orders-nav-item${activeNav === item.label ? " active" : ""}`}
-                onClick={() => setActiveNav(item.label)}
-              >
-                <span className="orders-nav-icon">{item.icon}</span>
-                {item.label}
-              </button>
-            ))}
-          </nav>
-          <div className="orders-nav-bottom">
-            {NAV_BOTTOM.map((item) => (
-              <button
-                key={item.label}
-                className="orders-nav-item"
-                onClick={() => setActiveNav(item.label)}
-              >
-                <span className="orders-nav-icon">{item.icon}</span>
-                {item.label}
-              </button>
-            ))}
+      {/* BODY */}
+      <div className="mc-body">
+
+        {/* SIDEBAR */}
+        <aside className="mc-sidebar">
+          <div className="mc-step-title">
+            1. Create your<br />restaurant profile
           </div>
+
+          <div className="mc-step-sub">Restaurant information</div>
+          <ul className="mc-step-list">
+            <li>Restaurant name, address,<br />details, owner details</li>
+          </ul>
+
+          <div className="mc-step-sub">Restaurant Types and Timings</div>
+          <ul className="mc-step-list">
+            <li>
+              <span className="mc-step-bold">
+                2. &nbsp; Establishments &amp; Cuisine types.<br />Opening hours
+              </span>
+            </li>
+            <li className="mc-step-li-spaced">
+              <span className="mc-step-normal">Create your menu</span>
+            </li>
+          </ul>
+
+          <div className="mc-step-dots">···</div>
+
+          <ul className="mc-step-list">
+            <li>Menu, Restaurant, food images</li>
+          </ul>
         </aside>
 
-        {/* Main */}
-        <main className="orders-main">
-          {/* Order List Section */}
-          <div className="orders-list-section">
-            <div className="orders-list-header">
-              <div>
-                <div className="orders-list-title">Orders</div>
-                <div className="orders-timestamp">{getNow()}</div>
-              </div>
-            </div>
+        {/* MAIN */}
+        <main className="mc-main">
 
-            {/* Filter Tabs */}
-            <div className="orders-filters">
-              {FILTERS.map((f) => (
-                <button
-                  key={f}
-                  className={`orders-filter-btn ${activeFilter === f ? FILTER_CLASS[f] : "inactive"}`}
-                  onClick={() => setActiveFilter(f)}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-
-            {/* Order Cards */}
-            <div className="orders-scroll">
-              {filteredOrders.map((order) => (
-                <div
-                  key={order.id}
-                  className={`order-card${selectedOrder === order.id ? " selected" : ""}`}
-                  onClick={() => setSelectedOrder(order.id === selectedOrder ? null : order.id)}
-                >
-                  <div className="order-label">{order.label}</div>
-                  <img
-                    src={order.image}
-                    alt={order.name}
-                    className="order-card-img"
-                    onError={(e) => { e.target.style.background = "#e8e0d8"; e.target.src = ""; }}
-                  />
-                  <div className="order-card-info">
-                    <div className="order-card-name">{order.name}</div>
-                    <div className="order-card-price">{order.price}</div>
-                  </div>
-                  <div className="order-card-right">
-                    <div className="order-card-type">{order.type}</div>
-                    <div className="order-card-phone">{order.phone}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* Category tabs */}
+          <div className="mc-tabs">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                className={`mc-tab${activeCategory === cat ? " active" : ""}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
 
-          {/* Right Panel */}
-          <div className="orders-right-panel">
-            {/* Stats */}
-            <div className="orders-stats">
-              {STATS.map((s) => (
-                <div key={s.label} className="orders-stat-row">
-                  <span className="orders-stat-label">{s.label}</span>
-                  <span className="orders-stat-value">{s.value}</span>
+          {/* Form + Preview grid */}
+          <div className="mc-grid">
+
+            {/* FORM */}
+            <div className="mc-form">
+              <span className="mc-name-link">Name</span>
+
+              <div className="mc-field">
+                <label className="mc-field-label">Menu Name</label>
+                <input
+                  placeholder="Menu description"
+                  value={form.name}
+                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                />
+              </div>
+
+              <div className="mc-field">
+                <label className="mc-field-label">Ingredients</label>
+                <input
+                  placeholder="Image"
+                  value={form.ingredients}
+                  onChange={(e) => setForm((f) => ({ ...f, ingredients: e.target.value }))}
+                />
+              </div>
+
+              <div className="mc-field">
+                <label className="mc-field-label">Upload image</label>
+                <label className="mc-upload-label">
+                  {form.imagePreview
+                    ? <img src={form.imagePreview} alt="preview" className="mc-upload-img" />
+                    : <span className="mc-upload-text">Price</span>
+                  }
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="mc-hidden-input"
+                    onChange={handleImageUpload}
+                  />
+                </label>
+              </div>
+
+              <div className="mc-field">
+                <div className="mc-price-row">
+                  <input
+                    placeholder="0"
+                    type="number"
+                    value={form.price}
+                    onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))}
+                  />
+                  <span className="mc-currency">RWF</span>
                 </div>
-              ))}
-            </div>
-
-            {/* Add Order */}
-            <div className="orders-add-panel">
-              <div className="orders-add-title">Add Order</div>
-              <div className="orders-add-subtitle">
-                <span>Create new Order</span>
-                <div className="orders-add-plus">+</div>
               </div>
 
-              <div className="orders-cat-rows">
-                {CATEGORIES.map((cat) => (
-                  <div key={cat} className="orders-cat-row">
-                    <span className="orders-cat-name">{cat}</span>
-                    <span className={`orders-cat-badge ${cat === "Drink" ? "default-badge" : "new-badge"}`}>
-                      {cat === "Drink" ? "Default" : "New"}
-                    </span>
-                  </div>
-                ))}
+              <div className="mc-actions">
+                <button className="mc-btn-add" onClick={handleAddMore}>
+                  Add More
+                </button>
+                <button className="mc-btn-order" onClick={handleAddOrder}>
+                  Add Order
+                </button>
               </div>
-
-              <button className="orders-explore-btn">
-                Explore more
-                <div className="orders-explore-arrow">›</div>
-              </button>
             </div>
+
+            {/* FOOD PREVIEW */}
+            <div className="mc-preview">
+              {form.imagePreview
+                ? <img src={form.imagePreview} alt="Uploaded food" />
+                : <img
+                    src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=700&q=80"
+                    alt="Food preview"
+                  />
+              }
+            </div>
+
           </div>
         </main>
       </div>
     </div>
   );
 }
+export default Orders;
