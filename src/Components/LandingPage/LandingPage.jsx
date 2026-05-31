@@ -1,6 +1,7 @@
 import React from 'react'
 import './LandingPage.css'
 import { Link } from 'react-router-dom'
+import MenuBubble from '../Menububble/Menububble'
 
 
 const LandingPage = () => {
@@ -133,9 +134,10 @@ const LandingPage = () => {
         </div>
 
         {/* ARROW BUTTON */}
-        <button className="arrow-btn">
+       <Link to="/MenuBubble"><button className="arrow-btn">
           →
         </button>
+        </Link> 
 
       </div>
      </div>
