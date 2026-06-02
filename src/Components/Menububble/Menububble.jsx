@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Menububble.css";
+import { Link } from "react-router-dom";
 
 const CATEGORIES = [
   { key: "All",       label: "All",        icon: "◈" },
@@ -232,6 +233,8 @@ export default function Menububble() {
             onClick={() => showToast("Opening add item form…")}>
             + Add New Item
           </button>
+
+       <Link to="/menu">➡️</Link>
         </footer>
 
       </div>{/* /mm-main */}

@@ -21,7 +21,7 @@ const steps = [
   },
 ];
 
-export default function MissMore() {
+const RestaurantPage = () => {
   const [activeCategory, setActiveCategory] = useState("Starter");
   const [menuName, setMenuName] = useState("");
   const [menuDescription, setMenuDescription] = useState("");
@@ -213,7 +213,7 @@ export default function MissMore() {
               </svg>
               Add More
             </button> </Link>
-           <Link to="/orders"> <button className="mm-btn mm-btn--outline">
+           <Link to="/order2"> <button className="mm-btn mm-btn--outline">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 1 4 0M9 5h6" />
               </svg>
@@ -236,3 +236,5 @@ export default function MissMore() {
     </div>
   );
 }
+
+export default RestaurantPage;

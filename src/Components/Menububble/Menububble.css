@@ -39,6 +39,7 @@ body {
 
 /* ── APP SHELL ────────────────────────────────────────── */
 .mm-app {
+    width: 100%;
   display: flex;
   min-height: 100vh;
   background: var(--bg);
@@ -471,6 +472,9 @@ body {
    FOOTER
 ══════════════════════════════════════════════════════ */
 .mm-footer {
+    display: flex;
+    flex-direction: row;
+    
   height: var(--footer);
   background: var(--surface);
   border-top: 1px solid var(--gold-border);
