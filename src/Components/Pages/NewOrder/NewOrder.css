@@ -1,0 +1,586 @@
+/* ==========================================================================
+   1. GLOBAL RESET & VIEWPORT MATRIX
+   ========================================================================== */
+html, body, #root, .app-root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #F8FAFC;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit !important;
+}
+
+.new-order-container {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* ==========================================================================
+   2. LEFT SIDEBAR PANEL
+   ========================================================================== */
+.sidebar-navigation {
+  width: 260px !important;
+  height: 100% !important;
+  background-color: #FFFFFF !important;
+  border-right: 1px solid #E2E8F0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 32px 16px !important;
+  flex-shrink: 0 !important;
+}
+
+.brand-section {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding-left: 12px !important;
+  margin-bottom: 40px !important;
+}
+
+.brand-logo-box {
+  width: 32px !important;
+  height: 32px !important;
+  background-color: #8B5E3C !important; 
+  border-radius: 8px !important;
+}
+
+.brand-name {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+  margin: 0 !important;
+}
+
+.nav-links-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+.nav-item-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 14px 16px !important;
+  border: none !important;
+  background: transparent !important;
+  color: #64748B !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+
+.nav-item-btn.active {
+  background-color: #FFF7ED !important;
+  color: #F97316 !important;
+  font-weight: 600 !important;
+}
+
+.kitchen-status-card {
+  background-color: #FFF7ED !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  margin-top: auto !important;
+}
+
+.kitchen-status-title {
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #C2410C !important;
+  font-weight: 700 !important;
+  margin: 0 0 6px 0 !important;
+}
+
+.kitchen-status-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  color: #475569 !important;
+}
+
+.status-indicator-dot {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #22C55E !important;
+  border-radius: 50% !important;
+}
+
+/* ==========================================================================
+   3. MAIN WORKSPACE VIEW CANVASES
+   ========================================================================== */
+.workspace-canvas {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.top-appbar {
+  height: 72px !important;
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0 40px !important;
+  flex-shrink: 0 !important;
+}
+
+.appbar-title {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+  margin: 0 !important;
+}
+
+.appbar-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 24px !important;
+}
+
+.search-wrapper {
+  position: relative !important;
+  width: 260px !important;
+}
+
+.search-input {
+  width: 100% !important;
+  padding: 10px 16px 10px 42px !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  background-color: #EFF6FF !important;
+  font-size: 14px !important;
+  outline: none !important;
+}
+
+.search-icon-inside {
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #94A3B8 !important;
+}
+
+.admin-profile-node {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.admin-info {
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: right !important;
+}
+
+.admin-name {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #0F172A !important;
+}
+
+.admin-role {
+  font-size: 11px !important;
+  color: #64748B !important;
+}
+
+.admin-avatar {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+
+/* ==========================================================================
+   4. TWO COLUMN WORKING DESKTOP MATRIX SPLIT
+   ========================================================================== */
+.workspace-grid {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  overflow: hidden !important;
+}
+
+.menu-management-column {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 32px 40px !important;
+}
+
+.client-selection-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  margin-bottom: 32px !important;
+}
+
+.card-label {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #0F172A !important;
+  margin: 0 0 16px 0 !important;
+}
+
+.client-input-row {
+  display: flex !important;
+  gap: 16px !important;
+}
+
+.client-search-wrapper {
+  position: relative !important;
+  flex: 1 !important;
+}
+
+.client-search-input {
+  width: 100% !important;
+  padding: 14px 16px 14px 48px !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  font-size: 14px !important;
+  outline: none !important;
+  color: #334155 !important;
+}
+
+.client-search-icon {
+  position: absolute !important;
+  left: 18px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #94A3B8 !important;
+}
+
+.add-client-btn {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  border: none !important;
+  background-color: #EFF6FF !important;
+  color: #2563EB !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+}
+
+.menu-header-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 24px !important;
+}
+
+.section-headline {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+  margin: 0 !important;
+}
+
+.category-pill-group {
+  display: flex !important;
+  gap: 8px !important;
+}
+
+.pill-button {
+  padding: 8px 18px !important;
+  border-radius: 20px !important;
+  border: none !important;
+  background-color: #EFF6FF !important;
+  color: #2563EB !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+
+.pill-button.active {
+  background-color: #F97316 !important;
+  color: #FFFFFF !important;
+}
+
+/* ── STRICT GRID ── */
+.food-item-grid {
+  
+  gap: 24px !important;
+  width: 100% !important;
+}
+
+.food-item-card {
+    width: 50% !important;
+    height: 320px !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  display: grid !important;
+  grid-template-rows: repeat(2, 1fr) !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+.food-hero-frame {
+  position: relative !important;
+  height: 200px !important;
+  width: 100% !important;
+}
+
+.food-hero-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.card-price-tag {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+}
+
+.food-card-body {
+  padding: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+}
+
+.food-card-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+  margin: 0 0 6px 0 !important;
+}
+
+.food-card-desc {
+  font-size: 13px !important;
+  color: #64748B !important;
+  line-height: 1.5 !important;
+  margin: 0 0 20px 0 !important;
+  flex-grow: 1 !important;
+}
+
+.add-order-action-btn {
+  width: 100% !important;
+  padding: 12px 0 !important;
+  border-radius: 12px !important;
+  border: none !important;
+  background-color: #FFF7ED !important;
+  color: #C2410C !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+}
+
+.no-items-fallback, .empty-cart-text {
+  text-align: center !important;
+  color: #94A3B8 !important;
+  font-size: 14px !important;
+  padding: 40px 0 !important;
+  margin: 0 !important;
+}
+
+.no-items-fallback {
+  grid-column: span 2 !important;
+}
+
+/* ==========================================================================
+   5. RIGHT SIDEBAR BILLING PANEL CALCULATOR
+   ========================================================================== */
+.billing-cart-aside {
+  width: 380px !important;
+  background-color: #FFFFFF !important;
+  border-left: 1px solid #E2E8F0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-shrink: 0 !important;
+}
+
+.cart-header-block {
+  padding: 24px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+}
+
+.cart-headline {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+  margin: 0 !important;
+}
+
+.cart-counter-pill {
+  background-color: #EFF6FF !important;
+  color: #2563EB !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+}
+
+.cart-items-scroller {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 12px 24px !important;
+}
+
+.cart-item-node {
+  display: flex !important;
+  align-items: center !important;
+  padding: 16px 0 !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+}
+
+.cart-item-thumb {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 12px !important;
+  object-fit: cover !important;
+  margin-right: 16px !important;
+}
+
+.cart-item-details {
+  flex: 1 !important;
+}
+
+.cart-item-name {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #0F172A !important;
+  margin: 0 0 8px 0 !important;
+}
+
+.cart-item-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+.qty-stepper-box {
+  display: flex !important;
+  align-items: center !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+}
+
+.stepper-btn {
+  width: 26px !important;
+  height: 26px !important;
+  border: none !important;
+  background: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  color: #64748B !important;
+}
+
+.stepper-btn:first-child { border-right: 1px solid #CBD5E1 !important; }
+.stepper-btn:last-child { border-left: 1px solid #CBD5E1 !important; }
+
+.stepper-value {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  padding: 0 8px !important;
+  color: #0F172A !important;
+}
+
+.remove-item-link {
+  background: none !important;
+  border: none !important;
+  color: #EF4444 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+}
+
+.cart-item-price-label {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+}
+
+.checkout-calculation-box {
+  padding: 24px !important;
+  background-color: #FFFFFF !important;
+  border-top: 1px solid #E2E8F0 !important;
+}
+
+.calc-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-bottom: 12px !important;
+  font-size: 14px !important;
+  color: #64748B !important;
+}
+
+.calc-val {
+  font-weight: 600 !important;
+  color: #0F172A !important;
+}
+
+.calc-row-total {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-top: 24px !important;
+  margin-bottom: 24px !important;
+}
+
+.total-label-text {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+}
+
+.total-price-text {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: #D97706 !important;
+}
+
+.checkout-submit-btn {
+  width: 100% !important;
+  padding: 16px 0 !important;
+  background-color: #F97316 !important;
+  border: none !important;
+  border-radius: 12px !important;
+  color: #FFFFFF !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+}

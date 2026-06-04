@@ -179,8 +179,11 @@ export default function Login({ onLoginSuccess }) {
         <div className="login-left">
           <div className="hero-text">
             <h1>
-              Comida Deliciosa,{"\n"}
-              Vida Deliciosa.
+              ☺️ Welcome Back!👋,{"\n\n"}
+              <br />
+              Connecting customers and restaurant owners through a 
+              comprehensive ecosystem designed to enhance convenience,
+               efficiency, and service excellence..
             </h1>
           </div>
           <img
@@ -193,7 +196,7 @@ export default function Login({ onLoginSuccess }) {
         {/* RIGHT — CARD */}
         <div className="login-card-wrap">
           <div className="login-card">
-            <p className="login-card-welcome">WELCOME</p>
+            <p className="login-card-welcome">WELCOME Back!</p>
             <h2 className="login-card-title">
               Login to Miss<span className="login-card-title-logo">More</span>
             </h2>
@@ -248,7 +251,7 @@ export default function Login({ onLoginSuccess }) {
             {/* Sign up link */}
             <p className="login-links">
               Don't have an account?&nbsp;
-              <Link to="/create-account" className="login-signup-link">Sign Up</Link>
+              <Link to="/landing" className="login-signup-link">Sign Up</Link>
             </p>
             <p className="login-links">
               Forgot your password/Login&nbsp;
