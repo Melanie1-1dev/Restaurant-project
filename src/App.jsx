@@ -11,6 +11,7 @@ import Menububble from './Components/Menububble/Menububble'
 import Dashbord from './Components/Dashbord/Dashbord'
 import Order2 from './Components/Order2/Order2'
 import Footer from './Components/Footer/Footer'
+import HomePage from './Components/HomePage/HomePage'
 const App = () => {
   return (
 
@@ -31,6 +32,8 @@ const App = () => {
        <Route path="/menububble" element={<Menububble />} />
        <Route path="/dashbord" element={<Dashbord />} />
        <Route path="/order2" element={<Order2 />} />  
+       <Route path="/HomePage" element={<HomePage />} />
+       
 
       </Routes>
 

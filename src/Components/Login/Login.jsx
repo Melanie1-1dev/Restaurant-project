@@ -1,22 +1,14 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Login.css";
-import {Link} from "react-router-dom";
-/*
-  ┌─────────────────────────────────────────────────┐
-  │  GOOGLE OAUTH SETUP                             │
-  │  1. Go to console.cloud.google.com              │
-  │  2. Create a project → APIs & Services →        │
-  │     Credentials → Create OAuth 2.0 Client ID   │
-  │  3. Add your domain to Authorised JS origins    │
-  │  4. Replace the string below with your ID       │
-  └─────────────────────────────────────────────────┘
-*/
+import { Link, useNavigate } from "react-router-dom";
+
+/* ── paste your Client ID here ──────────────── */
 const GOOGLE_CLIENT_ID = "468688266958-lucql7pbd84jrcf6026bc5i503j4k0ao.apps.googleusercontent.com";
 
-/* ── localStorage auth helpers ───────────────── */
+/* ── localStorage helpers ────────────────────── */
 const USERS_KEY = "missmore_users";
-const getUsers  = () => { try { return JSON.parse(localStorage.getItem(USERS_KEY)) || []; } catch { return []; } };
-const findUser  = (email, pw) => getUsers().find(u => u.email === email.toLowerCase() && u.password === pw);
+const getUsers = () => { try { return JSON.parse(localStorage.getItem(USERS_KEY)) || []; } catch { return []; } };
+const findUser = (email, pw) => getUsers().find(u => u.email === email.toLowerCase() && u.password === pw);
 
 /* ── validation ──────────────────────────────── */
 const validateEmail = v => {
@@ -30,7 +22,7 @@ const validatePassword = v => {
   return "";
 };
 
-/* ── SVG icons ───────────────────────────────── */
+/* ── Eye icon ────────────────────────────────── */
 function EyeIcon({ open }) {
   return open ? (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
@@ -47,25 +39,10 @@ function EyeIcon({ open }) {
   );
 }
 
-function GoogleIcon() {
-  return (
-    <svg className="login-google-icon" viewBox="0 0 48 48">
-      <path fill="#EA4335" d="M24 9.5c3.14 0 5.95 1.08 8.17 2.85l6.1-6.1C34.46 3.09 29.53 1 24 1 14.62 1 6.62 6.67 3.18 14.72l7.1 5.52C11.9 14.24 17.44 9.5 24 9.5z"/>
-      <path fill="#4285F4" d="M46.52 24.5c0-1.64-.15-3.22-.42-4.74H24v8.98h12.7c-.55 2.94-2.2 5.43-4.68 7.1l7.18 5.58C43.2 37.47 46.52 31.45 46.52 24.5z"/>
-      <path fill="#FBBC05" d="M10.28 28.76A14.5 14.5 0 019.5 24c0-1.65.28-3.24.78-4.76L3.18 13.7A22.93 22.93 0 001 24c0 3.68.88 7.15 2.44 10.23l6.84-5.47z"/>
-      <path fill="#34A853" d="M24 47c5.55 0 10.2-1.84 13.6-4.98l-7.18-5.58C28.6 38.18 26.42 39 24 39c-6.54 0-12.08-4.72-13.72-11.04l-6.84 5.47C6.6 41.28 14.6 47 24 47z"/>
-    </svg>
-  );
-}
-
 /* ══════════════════════════════════════════════
    MAIN COMPONENT
-   Props:
-     onSignUpClick  — called when user clicks "Sign Up"
-                      → link to your Register page
-     onLoginSuccess — called after successful login
 ══════════════════════════════════════════════ */
-export default function Login({ onSignUpClick, onLoginSuccess }) {
+export default function Login({ onLoginSuccess }) {
   const [email,     setEmail]     = useState("");
   const [password,  setPassword]  = useState("");
   const [showPass,  setShowPass]  = useState(false);
@@ -75,62 +52,70 @@ export default function Login({ onSignUpClick, onLoginSuccess }) {
   const [toast,     setToast]     = useState({ msg:"", type:"", show:false });
   const [activeNav, setActiveNav] = useState("Home");
 
+  const googleBtnRef = useRef(null);
+  const navigate     = useNavigate();
+
   /* ── toast ───────────────────────────────── */
   const showToast = (msg, type = "success") => {
     setToast({ msg, type, show: true });
     setTimeout(() => setToast(t => ({ ...t, show: false })), 3200);
   };
 
-  /* ── Google OAuth via GIS library ─────────
-     Loads Google Identity Services script once,
-     then renders the official Google button.    */
+  /* ── Google response callback ────────────── */
+  function handleGoogleResponse(response) {
+    try {
+      const payload = JSON.parse(atob(response.credential.split(".")[1]));
+      showToast(`Welcome, ${payload.name || payload.email}! ✅`);
+      if (onLoginSuccess) onLoginSuccess({ provider: "google", ...payload });
+      setTimeout(() => navigate("/home"), 1200);
+    } catch {
+      showToast("Google login failed. Try again.", "error");
+    }
+  }
+
+  /* ── Load & init Google button ───────────── 
+     Waits until the div is mounted, then either
+     loads the script or uses the already-loaded one */
   useEffect(() => {
-    // Load the Google script
-    const scriptId = "google-gsi";
-    if (document.getElementById(scriptId)) return;
+    function renderGoogleBtn() {
+      if (!window.google || !googleBtnRef.current) return;
 
-    const script = document.createElement("script");
-    script.id  = scriptId;
-    script.src = "https://accounts.google.com/gsi/client";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
+      window.google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback:  handleGoogleResponse,
+      });
 
-    script.onload = () => initGoogle();
+      // Clear any old button before rendering
+      googleBtnRef.current.innerHTML = "";
 
-    return () => {
-      // cleanup not strictly needed
-    };
-  }, []);
-
-  const initGoogle = useCallback(() => {
-    if (!window.google) return;
-    window.google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID,
-      callback: handleGoogleResponse,
-    });
-    window.google.accounts.id.renderButton(
-      document.getElementById("google-btn-container"),
-      {
+      window.google.accounts.id.renderButton(googleBtnRef.current, {
         type:  "standard",
         theme: "outline",
         size:  "large",
         text:  "continue_with",
         shape: "rectangular",
         width: 276,
-      }
-    );
-  }, []);
-
-  /* Called by Google with a JWT credential */
-  function handleGoogleResponse(response) {
-    if (response.credential) {
-      // Decode the JWT payload (no verification needed client-side)
-      const payload = JSON.parse(atob(response.credential.split(".")[1]));
-      showToast(`Welcome, ${payload.name || payload.email}! ✅`);
-      if (onLoginSuccess) onLoginSuccess({ provider:"google", ...payload });
+      });
     }
-  }
+
+    const scriptId = "google-gsi-script";
+    const existing = document.getElementById(scriptId);
+
+    if (existing) {
+      // Script already loaded — just render the button
+      renderGoogleBtn();
+    } else {
+      // Load script fresh
+      const script    = document.createElement("script");
+      script.id       = scriptId;
+      script.src      = "https://accounts.google.com/gsi/client";
+      script.async    = true;
+      script.defer    = true;
+      script.onload   = renderGoogleBtn;
+      script.onerror  = () => showToast("Could not load Google sign-in.", "error");
+      document.head.appendChild(script);
+    }
+  }, []); // runs once after mount — div is guaranteed to exist
 
   /* ── form submit ─────────────────────────── */
   async function handleSubmit(e) {
@@ -142,7 +127,7 @@ export default function Login({ onSignUpClick, onLoginSuccess }) {
     if (eErr || pErr) return;
 
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1100));
+    await new Promise(r => setTimeout(r, 1000));
 
     const user = findUser(email, password);
     setLoading(false);
@@ -152,27 +137,17 @@ export default function Login({ onSignUpClick, onLoginSuccess }) {
       setPassErr("Wrong email or password");
       return;
     }
-    showToast(`Welcome back, ${email}! ✅`);
+    showToast(`Welcome back! ✅`);
     setEmail(""); setPassword("");
-    if (onLoginSuccess) onLoginSuccess({ provider:"email", email });
+    if (onLoginSuccess) onLoginSuccess({ provider: "email", email });
+    setTimeout(() => navigate("/home"), 1200);
   }
 
   /* ── forgot password ─────────────────────── */
   function handleReset() {
     const err = validateEmail(email);
-    if (err) { setEmailErr(err || "Enter your email first"); return; }
+    if (err) { setEmailErr("Enter your email first"); return; }
     showToast(`Reset link sent to ${email} 📧`);
-  }
-
-  /* ── sign-up navigation ──────────────────── */
-  function handleSignUp() {
-    if (onSignUpClick) {
-      onSignUpClick();           // parent navigates to Register page
-    } else {
-      /* fallback: if used without React Router prop,
-         you can replace this with: navigate('/register') */
-      window.location.href = "/register";
-    }
   }
 
   return (
@@ -183,37 +158,16 @@ export default function Login({ onSignUpClick, onLoginSuccess }) {
         {toast.msg}
       </div>
 
-      {/* HEADER */}
-      <header className="login-header">
-        <div className="login-logo">Miss<span>More</span></div>
-        <nav className="login-nav">
-          {["Home","About","Experience","Contact","Dashboard"].map(item => (
-            <button
-              key={item}
-              className={[
-                "login-nav-link",
-                item === "Contact"   ? "contact"   : "",
-                item === "Dashboard" ? "dashboard" : "",
-                activeNav === item   ? "nav-active" : "",
-              ].join(" ").trim()}
-              onClick={() => setActiveNav(item)}
-            >
-              {item}
-            </button>
-          ))}
-        </nav>
-      </header>
-
       {/* BODY */}
       <div className="login-body">
-        <div className="login-blob"/>
+        <div className="login-blob" />
 
         {/* LEFT */}
         <div className="login-left">
           <h1 className="login-headline">
             <span className="black">Comida </span>
             <span className="orange">Deliciosa,</span>
-            <br/>
+            <br />
             <span className="orange">Vida </span>
             <span className="black">Deliciosa.</span>
           </h1>
@@ -224,7 +178,7 @@ export default function Login({ onSignUpClick, onLoginSuccess }) {
           />
         </div>
 
-        {/* RIGHT — LOGIN CARD */}
+        {/* RIGHT — CARD */}
         <div className="login-card-wrap">
           <div className="login-card">
             <p className="login-card-welcome">WELCOME</p>
@@ -234,6 +188,7 @@ export default function Login({ onSignUpClick, onLoginSuccess }) {
             <p className="login-card-sub">Enter your email and password below</p>
 
             <form onSubmit={handleSubmit} noValidate>
+
               {/* Email */}
               <label className="login-field-label">Email</label>
               <div className="login-input-wrap">
@@ -267,39 +222,37 @@ export default function Login({ onSignUpClick, onLoginSuccess }) {
                 />
                 <button type="button" className="login-eye-btn"
                   onClick={() => setShowPass(v => !v)} tabIndex={-1}>
-                  <EyeIcon open={showPass}/>
+                  <EyeIcon open={showPass} />
                 </button>
               </div>
               {passErr && <p className="login-error-msg">{passErr}</p>}
 
               <button className="login-btn" type="submit" disabled={loading}>
-                {loading && <span className="login-spinner"/>}
+                {loading && <span className="login-spinner" />}
                 {loading ? "Logging in…" : "Log In"}
               </button>
             </form>
 
-            {/* Sign up link — goes to your Register page */}
+            {/* Sign up — links to your register page */}
             <p className="login-links">
               Don't have an account?&nbsp;
-          <Link to="/create-account">Sign Up</Link>
+              <Link to="/create-account" className="login-signup-link">Sign Up</Link>
             </p>
             <p className="login-links">
               Forgot your password/Login&nbsp;
               <button className="reset" onClick={handleReset}>RESET</button>
             </p>
 
-            {/* OR Google — official GIS button rendered here */}
+            {/* Google button */}
             <div className="login-or">
-              <div className="login-or-line"/>
+              <div className="login-or-line" />
               OR continue with
-              <div className="login-or-line"/>
+              <div className="login-or-line" />
             </div>
 
-            {/* Google renders its own button into this div */}
-            <div id="google-btn-container" className="login-google-wrap"/>
+            {/* Google renders its official button here */}
+            <div ref={googleBtnRef} className="login-google-wrap" />
 
-            {/* Fallback shown until Google script loads */}
-           
           </div>
         </div>
       </div>

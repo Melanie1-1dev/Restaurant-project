@@ -118,7 +118,7 @@ const LandingPage = () => {
           </form>
 
           <div className="login-link">
-            Already have an account? <span>Login</span>
+            Already have an account? <Link to="/">Login</Link>
           </div>
 
         </div>
