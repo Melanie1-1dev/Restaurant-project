@@ -17,6 +17,7 @@ import Footer from './Components/Footer/Footer';
 // Core Application Pages (Double-check case-sensitivity on "Pages" vs "pages")
 import Dashbord from './Components/Pages/Dashbord/Dashbord';
 import NewOrder from './Components/Pages/NewOrder/NewOrder';
+import AnOtherOrder from './Components/Pages/AnOther-order/AnOther-order';
 
 // Fix: Commented or imported chart support if you decide to keep a dedicated route page
 // import SalesChart from './SalesChart'; 
@@ -33,6 +34,7 @@ const App = () => {
         {/* Dashboard Panels */}
         <Route path="/dashbord" element={<Dashbord />} />
         <Route path="/new-order" element={<NewOrder />} />
+        <Route path="/an-other-order" element={<AnOtherOrder />} />
 
         {/* Operational Modules */}
         <Route path="/restaurant-owner" element={<RestaurantOwner />} />

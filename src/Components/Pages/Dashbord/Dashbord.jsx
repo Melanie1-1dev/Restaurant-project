@@ -108,7 +108,7 @@ export default function MissMoreDashbord() {
         <div className="nav-links-group">
           <div className="brand-section">
             <div className="brand-logo-box"></div>
-            <h1 className="brand-name">MissMori</h1>
+            <h1 className="brand-name">MissMore</h1>
           </div>
           
           <div className="nav-item-btn active"><LayoutGrid size={18} /> Dashboard</div>
@@ -116,7 +116,7 @@ export default function MissMoreDashbord() {
             <button className="nav-item-btn"><ShoppingBag size={18} /> New Order</button>
           </Link>
           <button className="nav-item-btn"><Utensils size={18} /> Menu</button>
-          <button className="nav-item-btn"><Users size={18} /> Customers</button>
+      <Link to="/an-other-order" style={{textDecoration: 'none'}}><button className="nav-item-btn"><Users size={18} /> Customers</button></Link>
           <button className="nav-item-btn"><Settings size={18} /> Settings</button>
         </div>
 
@@ -312,7 +312,7 @@ export default function MissMoreDashbord() {
           </section>
 
           <footer className="dashboard-footer">
-            <div>© 2026 MissMori. All Rights Reserved.</div>
+            <div>© 2026 MissMore. All Rights Reserved.</div>
             <div className="footer-links">
               <span>Privacy Policy</span>
               <span>Terms of Service</span>
