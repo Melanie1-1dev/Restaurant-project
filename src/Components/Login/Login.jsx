@@ -53,7 +53,7 @@ export default function Login({ onLoginSuccess }) {
   const [activeNav, setActiveNav] = useState("Home");
 
   const googleBtnRef = useRef(null);
-  const navigate     = useNavigate();
+  const navigate     = useNavigate(); /* ← NOW USED for redirect */
 
   /* ── toast ───────────────────────────────── */
   const showToast = (msg, type = "success") => {
@@ -73,21 +73,15 @@ export default function Login({ onLoginSuccess }) {
     }
   }
 
-  /* ── Load & init Google button ───────────── 
-     Waits until the div is mounted, then either
-     loads the script or uses the already-loaded one */
+  /* ── Load & init Google button ───────────── */
   useEffect(() => {
     function renderGoogleBtn() {
       if (!window.google || !googleBtnRef.current) return;
-
       window.google.accounts.id.initialize({
         client_id: GOOGLE_CLIENT_ID,
         callback:  handleGoogleResponse,
       });
-
-      // Clear any old button before rendering
       googleBtnRef.current.innerHTML = "";
-
       window.google.accounts.id.renderButton(googleBtnRef.current, {
         type:  "standard",
         theme: "outline",
@@ -100,22 +94,19 @@ export default function Login({ onLoginSuccess }) {
 
     const scriptId = "google-gsi-script";
     const existing = document.getElementById(scriptId);
-
     if (existing) {
-      // Script already loaded — just render the button
       renderGoogleBtn();
     } else {
-      // Load script fresh
-      const script    = document.createElement("script");
-      script.id       = scriptId;
-      script.src      = "https://accounts.google.com/gsi/client";
-      script.async    = true;
-      script.defer    = true;
-      script.onload   = renderGoogleBtn;
-      script.onerror  = () => showToast("Could not load Google sign-in.", "error");
+      const script   = document.createElement("script");
+      script.id      = scriptId;
+      script.src     = "https://accounts.google.com/gsi/client";
+      script.async   = true;
+      script.defer   = true;
+      script.onload  = renderGoogleBtn;
+      script.onerror = () => showToast("Could not load Google sign-in.", "error");
       document.head.appendChild(script);
     }
-  }, []); // runs once after mount — div is guaranteed to exist
+  }, []);
 
   /* ── form submit ─────────────────────────── */
   async function handleSubmit(e) {
@@ -137,6 +128,7 @@ export default function Login({ onLoginSuccess }) {
       setPassErr("Wrong email or password");
       return;
     }
+
     showToast(`Welcome back! ✅`);
     setEmail(""); setPassword("");
     if (onLoginSuccess) onLoginSuccess({ provider: "email", email });
@@ -158,19 +150,39 @@ export default function Login({ onLoginSuccess }) {
         {toast.msg}
       </div>
 
+{/*     
+      <header className="login-header">
+        <div className="login-logo">Miss<span>More</span></div>
+        <nav className="login-nav">
+          {["Home","About","Experience","Contact","Dashboard"].map(item => (
+            <button
+              key={item}
+              className={[
+                "login-nav-link",
+                item === "Contact"   ? "contact"   : "",
+                item === "Dashboard" ? "dashboard" : "",
+                activeNav === item   ? "nav-active": "",
+              ].filter(Boolean).join(" ")}
+              onClick={() => setActiveNav(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </nav>
+      </header> */}
+
       {/* BODY */}
       <div className="login-body">
         <div className="login-blob" />
 
         {/* LEFT */}
         <div className="login-left">
-          <h1 className="login-headline">
-            <span className="black">Comida </span>
-            <span className="orange">Deliciosa,</span>
-            <br />
-            <span className="orange">Vida </span>
-            <span className="black">Deliciosa.</span>
-          </h1>
+          <div className="hero-text">
+            <h1>
+              Comida Deliciosa,{"\n"}
+              Vida Deliciosa.
+            </h1>
+          </div>
           <img
             src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&q=80"
             alt="Delicious food"
@@ -233,7 +245,7 @@ export default function Login({ onLoginSuccess }) {
               </button>
             </form>
 
-            {/* Sign up — links to your register page */}
+            {/* Sign up link */}
             <p className="login-links">
               Don't have an account?&nbsp;
               <Link to="/create-account" className="login-signup-link">Sign Up</Link>
@@ -243,15 +255,16 @@ export default function Login({ onLoginSuccess }) {
               <button className="reset" onClick={handleReset}>RESET</button>
             </p>
 
-            {/* Google button */}
+            {/* OR Google */}
             <div className="login-or">
               <div className="login-or-line" />
               OR continue with
               <div className="login-or-line" />
             </div>
 
-            {/* Google renders its official button here */}
+            {/* Official Google button (renders here when script loads) */}
             <div ref={googleBtnRef} className="login-google-wrap" />
+
 
           </div>
         </div>

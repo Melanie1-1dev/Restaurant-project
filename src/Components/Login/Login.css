@@ -108,7 +108,7 @@ input  { font-family: inherit; outline: none; border: none; background: none; }
 .login-left:hover{
   transform: translateY(-4px);
   transition: transform 0.3s ease;
-  box-shadow: 0 5px 3px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 12px rgba(0,0,0,0.12);
 }
 
 
@@ -160,6 +160,8 @@ input  { font-family: inherit; outline: none; border: none; background: none; }
 /* ===== RIGHT — CARD ===== */
 .login-card-wrap {
   position: relative;
+  padding: 30px 80px;
+  height: 85vh;
   z-index: 10;
   flex-shrink: 0;
   animation: fadeRight 0.65s ease 0.25s both;
@@ -168,7 +170,7 @@ input  { font-family: inherit; outline: none; border: none; background: none; }
 .login-card-wrap:hover{
   transform: translateY(-4px);
   transition: transform 0.3s ease;
-  box-shadow: 30px 12px 24px rgba(193, 110, 21, 0.841);
+  box-shadow: 14px 12px 27px rgb(145, 90, 2);
 }
 
 @keyframes fadeRight {
@@ -180,8 +182,9 @@ input  { font-family: inherit; outline: none; border: none; background: none; }
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 30px 8px 48px rgba(0,0,0,0.11);
-  padding: 32px 28px 24px;
-  width: 330px;
+  padding: 40px 28px 24px;
+  width: 400px;
+  height: 100%;
 }
 
 .login-card-welcome {

@@ -1,7 +1,8 @@
+import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
-
+import chef_img from "../../assets/chef.jpg";
 const CITIES = ["Kigali", "Kampala", "Imena", "Arusha", "Nairobi", "Heaven"];
 
 export default function HomePage() {
@@ -95,7 +96,7 @@ export default function HomePage() {
 
         {/* chef image */}
         <img
-          src="https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=600&q=80"
+          src={chef_img}
           alt="Chef"
           className="home-chef-img"
         />
@@ -124,18 +125,22 @@ export default function HomePage() {
           {/* search */}
           <form className="home-search-row" onSubmit={handleSearch}>
             <div className="home-search-wrap">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8"/>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"/>
               </svg>
-              <input
+
+                <input
                 className="home-search-input"
                 type="text"
                 placeholder="Search restaurant, cuisines....."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
+
+
+
             </div>
             <button className="home-search-btn" type="submit">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
