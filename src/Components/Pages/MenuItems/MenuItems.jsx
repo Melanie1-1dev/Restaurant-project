@@ -1,5 +1,6 @@
 import React from 'react';
 import './MenuItems.css';
+import { Link } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   ShoppingBag, 
@@ -90,31 +91,37 @@ const MenuItems = () => {
       {/* SIDEBAR */}
       <aside className="sidebar">
         <div className="brand">
-          <h1 className="brand-name">MissMore</h1>
+          <h1 className="brand-name">MissMori</h1>
           <p className="brand-sub">Kitchen Management</p>
         </div>
 
         <nav className="nav-menu">
-          <a href="#dashboard" className="nav-item">
-            <LayoutDashboard size={20} />
-            <span>Dashboard</span>
-          </a>
-          <a href="#orders" className="nav-item">
-            <ShoppingBag size={20} />
-            <span>Orders</span>
-          </a>
-          <a href="#menu" className="nav-item active">
+          <Link to="/dashbord" className="nav-link-wrapper"> 
+            <div className="nav-item">
+              <LayoutDashboard size={20} />
+              <span>Dashboard</span>
+            </div>
+          </Link>
+          <Link to="/new-order" className="nav-link-wrapper"> 
+            <div className="nav-item">
+              <ShoppingBag size={20} />
+              <span>Orders</span>
+            </div>
+          </Link>
+          <div className="nav-item active">
             <UtensilsCrossed size={20} />
             <span>Menu</span>
-          </a>
-          <a href="#customers" className="nav-item">
-            <Users size={20} />
-            <span>Customers</span>
-          </a>
-          <a href="#settings" className="nav-item">
+          </div>
+          <Link to="/customers" className="nav-link-wrapper">    
+            <div className="nav-item">
+              <Users size={20} />
+              <span>Customers</span>
+            </div>
+          </Link>
+          <div className="nav-item">
             <Settings size={20} />
             <span>Settings</span>
-          </a>
+          </div>
         </nav>
 
         <div className="revenue-card">
@@ -148,7 +155,7 @@ const MenuItems = () => {
                 <span className="user-role">Admin</span>
               </div>
               <img 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" 
                 alt="Profile" 
                 className="profile-avatar" 
               />
@@ -165,92 +172,98 @@ const MenuItems = () => {
           </button>
         </div>
 
-        {/* METRIC CARDS */}
-        <section className="metrics-summary">
-          <div className="metric-card">
-            <div className="metric-icon-wrapper total-items">
-              <ShoppingBag size={20} />
+        {/* BLUE OUTLINE METRICS WRAPPER CONTAINER */}
+        <div className="blue-blueprint-wrapper outline-metrics">
+          {/* METRIC CARDS */}
+          <section className="metrics-summary">
+            <div className="metric-card">
+              <div className="metric-icon-wrapper total-items">
+                <ShoppingBag size={20} />
+              </div>
+              <div className="metric-details">
+                <span className="metric-label">TOTAL ITEMS</span>
+                <span className="metric-value">124</span>
+              </div>
             </div>
-            <div className="metric-details">
-              <span className="metric-label">TOTAL ITEMS</span>
-              <span className="metric-value">124</span>
-            </div>
-          </div>
 
-          <div className="metric-card">
-            <div className="metric-icon-wrapper active-items">
-              <span className="check-icon">✓</span>
+            <div className="metric-card">
+              <div className="metric-icon-wrapper active-items">
+                <span className="check-icon">✓</span>
+              </div>
+              <div className="metric-details">
+                <span className="metric-label">ACTIVE</span>
+                <span className="metric-value">118</span>
+              </div>
             </div>
-            <div className="metric-details">
-              <span className="metric-label">ACTIVE</span>
-              <span className="metric-value">118</span>
-            </div>
-          </div>
 
-          <div className="metric-card">
-            <div className="metric-icon-wrapper out-of-stock-items">
-              <span className="ban-icon">⊘</span>
+            <div className="metric-card">
+              <div className="metric-icon-wrapper out-of-stock-items">
+                <span className="ban-icon">⊘</span>
+              </div>
+              <div className="metric-details">
+                <span className="metric-label">OUT OF STOCK</span>
+                <span className="metric-value">6</span>
+              </div>
             </div>
-            <div className="metric-details">
-              <span className="metric-label">OUT OF STOCK</span>
-              <span className="metric-value">6</span>
-            </div>
-          </div>
-        </section>
-
-        {/* FILTER NAVIGATION */}
-        <div className="filter-toolbar">
-          <div className="category-tabs">
-            <button className="tab active">All</button>
-            <button className="tab">Burgers</button>
-            <button className="tab">Pizza</button>
-            <button className="tab">Sides</button>
-            <button className="tab">Drinks</button>
-          </div>
-          <div className="toolbar-actions">
-            <button className="toolbar-btn"><SlidersHorizontal size={18} /></button>
-            <button className="toolbar-btn active-view"><Grid size={18} /></button>
-          </div>
+          </section>
         </div>
 
-        {/* MENU ITEMS GRID */}
-        <section className="menu-grid">
-          {menuItems.map((item) => (
-            <div className="menu-card" key={item.id}>
-              <div className="card-image-container">
-                <img src={item.image} alt={item.name} className="card-image" />
-                <span className={`status-badge ${item.status.toLowerCase().replace(/\s+/g, '-')}`}>
-                  {item.status}
-                </span>
-                <span className="item-price">{item.price}</span>
-              </div>
-              <div className="card-body">
-                <h3 className="item-title">{item.name}</h3>
-                <p className="item-description">{item.description}</p>
-                <div className="card-footer">
-                  <span className="prep-time">
-                    <Clock size={14} /> {item.time}
+        {/* BLUE OUTLINE MAIN CONTENT CANVAS CONTAINER */}
+        <div className="blue-blueprint-wrapper outline-content-canvas">
+          {/* FILTER NAVIGATION */}
+          <div className="filter-toolbar">
+            <div className="category-tabs">
+              <button className="tab active">All</button>
+              <button className="tab">Burgers</button>
+              <button className="tab">Pizza</button>
+              <button className="tab">Sides</button>
+              <button className="tab">Drinks</button>
+            </div>
+            <div className="toolbar-actions">
+              <button className="toolbar-btn"><SlidersHorizontal size={18} /></button>
+              <button className="toolbar-btn active-view"><Grid size={18} /></button>
+            </div>
+          </div>
+
+          {/* MENU ITEMS GRID */}
+          <section className="menu-grid">
+            {menuItems.map((item) => (
+              <div className="menu-card" key={item.id}>
+                <div className="card-image-container">
+                  <img src={item.image} alt={item.name} className="card-image" />
+                  <span className={`status-badge ${item.status.toLowerCase().replace(/\s+/g, '-')}`}>
+                    {item.status}
                   </span>
-                  <div className="item-actions">
-                    <button className="action-btn edit-btn"><Pencil size={16} /></button>
-                    <button className="action-btn delete-btn"><Trash2 size={16} /></button>
+                  <span className="item-price">{item.price}</span>
+                </div>
+                <div className="card-body">
+                  <h3 className="item-title">{item.name}</h3>
+                  <p className="item-description">{item.description}</p>
+                  <div className="card-footer">
+                    <span className="prep-time">
+                      <Clock size={14} /> {item.time}
+                    </span>
+                    <div className="item-actions">
+                      <button className="action-btn edit-btn"><Pencil size={16} /></button>
+                      <button className="action-btn delete-btn"><Trash2 size={16} /></button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
 
-          {/* ADD CATEGORY DOTTED CARD */}
-          <div className="add-category-card">
-            <div className="add-category-content">
-              <div className="plus-icon-container">
-                <Plus size={24} />
+            {/* ADD CATEGORY DOTTED CARD */}
+            <div className="add-category-card">
+              <div className="add-category-content">
+                <div className="plus-icon-container">
+                  <Plus size={24} />
+                </div>
+                <h3>New Category</h3>
+                <p>ORGANIZE YOUR MENU WITH FOLDERS</p>
               </div>
-              <h3>New Category</h3>
-              <p>ORGANIZE YOUR MENU WITH FOLDERS</p>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
     </div>
   );
