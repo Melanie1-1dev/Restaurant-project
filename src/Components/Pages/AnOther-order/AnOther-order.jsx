@@ -14,20 +14,20 @@ const STEPS = ["Confirm Details","Choose Restaurant","Select Table","Order Food"
 
 const RESTAURANTS = [
   {
-    id:1, name:"MissMori Downtown",
+    id:1, name:"MissMore Downtown",
     addr:"124 Culinary Ave, Central District",
     rating:"4.7", reviews:"900",
     img:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80",
     badge:"Select Table In",
   },
   {
-    id:2, name:"MissMori Harbor",
+    id:2, name:"MissMore Harbor",
     addr:"58 Sea View St, South Dock",
     rating:"4.7", reviews:"900",
     img:"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80",
   },
   {
-    id:3, name:"MissMori Garden",
+    id:3, name:"MissMore Garden",
     addr:"15 Botanical Garden Ave",
     rating:"4.8", reviews:"950",
     img:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80",

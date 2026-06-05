@@ -18,6 +18,7 @@ import Footer from './Components/Footer/Footer';
 import Dashbord from './Components/Pages/Dashbord/Dashbord';
 import NewOrder from './Components/Pages/NewOrder/NewOrder';
 import AnOtherOrder from './Components/Pages/AnOther-order/AnOther-order';
+import MenuItems from './Components/Pages/MenuItems/MenuItems';
 
 // Fix: Commented or imported chart support if you decide to keep a dedicated route page
 // import SalesChart from './SalesChart'; 
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/dashbord" element={<Dashbord />} />
         <Route path="/new-order" element={<NewOrder />} />
         <Route path="/an-other-order" element={<AnOtherOrder />} />
+        <Route path="/menu-items" element={<MenuItems />} />
 
         {/* Operational Modules */}
         <Route path="/restaurant-owner" element={<RestaurantOwner />} />

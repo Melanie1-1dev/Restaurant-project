@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import './Dashbord.css';
 
-export default function MissMoriDashbord() {
+export default function MissMoreDashbord() {
   // Application Interactive Table State
   const [orders, setOrders] = useState([
     {
@@ -155,7 +155,7 @@ export default function MissMoriDashbord() {
       {/* ================= LEFT SIDEBAR PANEL ================= */}
       <aside className="sidebar">
         <div>
-          <div className="brand-logo">MissMori</div>
+          <div className="brand-logo">MissMore</div>
           
           <nav className="nav-section">
             <div className="nav-item active"><LayoutGrid size={18} /> <span>Overview</span></div>
@@ -352,7 +352,7 @@ export default function MissMoriDashbord() {
 
         {/* Global Dashboard Footer Branding */}
         <footer className="dashboard-footer">
-          <div>© 2024 MissMori. All Rights Reserved.</div>
+          <div>© 2026 MissMore. All Rights Reserved.</div>
           <div className="footer-links">
             <span style={{ cursor: 'pointer' }}>Privacy Policy</span>
             <span style={{ cursor: 'pointer' }}>Terms of Service</span>
