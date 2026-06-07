@@ -1,0 +1,228 @@
+:root {
+  --primary-orange: #f2994a;
+  --text-dark: #333;
+  --text-muted: #666;
+  --border-light: #e0e0e0;
+  --bg-sidebar: #f8f9fa;
+  --bg-form-input: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #fcfcfc;
+  color: var(--text-dark);
+}
+
+.setup-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* 1. Top Navbar */
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.brand-logo { font-size: 20px; font-weight: 700; }
+.logo-accent { color: var(--primary-orange); }
+
+.nav-right { display: flex; align-items: center; gap: 30px; }
+.help-link { color: var(--text-muted); font-size: 14px; cursor: pointer; }
+.user-profile { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.user-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.user-name { font-weight: 600; font-size: 14px; }
+.user-role { font-size: 11px; color: var(--text-muted); }
+.chevron { color: #888; }
+
+.main-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 2. Left Sidebar Stepper */
+.sidebar-stepper {
+  width: 320px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid #eee;
+  padding: 40px;
+}
+
+.sidebar-title { font-size: 20px; margin-bottom: 10px; }
+.sidebar-subtitle { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+
+.stepper-list { margin: 40px 0; }
+.step-item { display: flex; gap: 15px; margin-bottom: 30px; opacity: 0.3; transition: 0.3s; }
+.step-item.active-step { opacity: 1; }
+
+.step-circle {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--primary-orange);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; font-size: 13px;
+}
+.active-step .step-circle { box-shadow: 0 0 10px rgba(242, 153, 74, 0.3); }
+
+.step-title { font-weight: 600; font-size: 14px; }
+.step-desc { font-size: 12px; color: var(--text-muted); }
+
+.sidebar-info-card {
+  background: #fff0e1;
+  color: #855d3e;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* 3. Center Form Content */
+.form-content-area {
+  flex: 1;
+  padding: 40px 60px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.step-indicator { color: var(--primary-orange); font-weight: bold; font-size: 11px; }
+.main-form-title { font-size: 26px; margin: 10px 0; }
+.form-instruction { color: var(--text-muted); margin-bottom: 30px; }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.full-width { grid-column: span 2; }
+
+.input-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+
+input[type="text"], select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--bg-form-input);
+}
+
+.input-icon-wrapper { position: relative; display: flex; align-items: center; }
+.input-icon-wrapper .icon { position: absolute; left: 12px; color: #888; font-size: 14px; }
+.input-icon-wrapper .end-icon { position: absolute; right: 12px; color: #888; }
+.input-icon-wrapper input { padding-left: 38px; }
+
+.section-label { display: block; font-size: 13px; font-weight: 600; margin-top: 30px; margin-bottom: 10px; }
+
+.upload-dashed-zone {
+  border: 2px dashed #ccc;
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  background: #fafafa;
+  cursor: pointer;
+}
+.upload-icon { font-size: 24px; margin-bottom: 10px; }
+.upload-main-text { font-weight: bold; font-size: 14px; }
+.upload-sub-text { font-size: 12px; color: var(--text-muted); max-width: 300px; margin: 8px auto 0; line-height: 1.4; }
+
+.placeholder-step { text-align: center; margin-top: 100px; color: #aaa; }
+
+/* 4. Right Preview Sidebar */
+.preview-sidebar {
+  width: 360px;
+  padding: 40px;
+  border-left: 1px solid #eee;
+  background: #fff;
+}
+
+.preview-label { margin-bottom: 20px; color: var(--text-dark); }
+
+.preview-card-mockup {
+  border: 1px solid #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.card-image-bg {
+  height: 150px;
+  background-color: #2c312f; /* Implicit fallback if image isn't available */
+  background-image: url('image_f0744c.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.card-details { padding: 25px; text-align: center; position: relative; }
+
+.food-icon-circle {
+  width: 45px; height: 45px;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  border: 4px solid #fff;
+  position: absolute;
+  top: -25px; left: 50%; transform: translateX(-50%);
+}
+
+.preview-restaurant-name { font-size: 18px; margin: 10px 0 5px; }
+.preview-tagline { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+
+.preview-info-list {
+  list-style: none; padding: 0;
+  text-align: left; font-size: 13px; color: #555;
+  line-height: 2; margin-bottom: 20px;
+}
+
+.ready-status-badge {
+  background: #e9f7ef; color: #27ae60;
+  padding: 12px; border-radius: 10px;
+  font-weight: bold; font-size: 14px;
+}
+
+/* 5. Bottom Persistent Footer */
+.action-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.footer-progress { display: flex; align-items: center; gap: 20px; }
+.mini-progress-dots { display: flex; gap: 8px; }
+
+.progress-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: #eee;
+  color: #aaa;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: bold;
+}
+.progress-dot.filled { background: var(--primary-orange); color: white; }
+
+.progress-text { font-size: 12px; color: var(--text-muted); }
+
+.footer-buttons { display: flex; gap: 15px; }
+.btn-primary { background: var(--primary-orange); color: white; border: none; padding: 12px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+.btn-secondary { background: white; color: var(--text-dark); border: 1px solid #ccc; padding: 12px 25px; border-radius: 10px; cursor: pointer; }
+
+/* Dynamic Animations */
+.form-fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const NAV = [
   { label:"Dashboard",  icon:"◇", path:"/dashbord" },
   { label:"New Order",  icon:"🛒", path:"/new-order" },
-  { label:"Menu",       icon:"≡", path:"/menu" },
-  { label:"Customers",  icon:"👥", path:"/customers" },
+  { label:"Menu",       icon:"≡", path:"/menu-items" },
+  { label:"Customers",  icon:"👥", path:"/an-other-order" },
 ];
 
 const STEPS = ["Confirm Details","Choose Restaurant","Select Table","Order Food"];
@@ -64,7 +64,7 @@ const OCCASIONS = ["Standard Dining","Birthday","Anniversary","Business Meeting"
 
 /* ── component ───────────────────────────────── */
 export default function AnOtherOrder() {
-  const [activeNav,   setActiveNav]   = useState("New Order");
+  const [activeNav,   setActiveNav]   = useState("Customers");
   const [activeStep,  setActiveStep]  = useState(0);
   const [guestName,   setGuestName]   = useState("");
   const [phone,       setPhone]       = useState("");

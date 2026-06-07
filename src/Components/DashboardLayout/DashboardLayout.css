@@ -1,0 +1,45 @@
+/* Components/DashboardLayout/DashboardLayout.css */
+
+/* Prevent structural cutoff heights */
+html, body, #root {
+  min-height: 100vh;
+  height: auto !important;
+  background-color: #F8FAFC;
+}
+
+.dashboard-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Fixed left menu styling */
+.sidebar {
+  width: 240px;
+  background-color: #1A2332;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+/* The structural layout engine that handles overflow and scrolling */
+.content-render-track {
+  margin-left: 240px; /* Leave clean space for the fixed sidebar */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: calc(100% - 240px);
+  min-height: 100vh;
+}
+
+.main-content {
+  padding: 24px 32px 48px 32px;
+  flex-grow: 1; /* Pushes the footer down on short pages */
+}

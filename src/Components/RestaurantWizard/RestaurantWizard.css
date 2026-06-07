@@ -1,0 +1,286 @@
+/* Base Style Overhauls */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wizard-page {
+  background-color: #000000;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar Elements */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #000000;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.brand {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.brand-italic {
+  color: #d97736;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.menu-links {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.menu-links li {
+  color: #8c8c8c;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.menu-links li:hover,
+.menu-links li.active-tab {
+  color: #ffffff;
+}
+
+.utility-icons {
+  display: flex;
+  gap: 24px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Page Split Content Area */
+.content-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  position: relative;
+  /* Dual purpose responsive reference image placement background style context */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('image_75c044.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Step Sidebar Configuration */
+.stepper-sidebar {
+  flex: 1.1;
+  padding: 60px 0 60px 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 45px;
+}
+
+.step-text-block {
+  max-width: 420px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.step-text-block.active-step {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.step-text-block h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.orange-highlight-label {
+  color: #d97736;
+  font-weight: 700;
+  margin-top: 6px;
+  font-size: 16px;
+}
+
+.gold-text-label {
+  color: #b58900;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+/* Highly Rounded Translucent Card Section */
+.form-panel-wrapper {
+  flex: 0.9;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-form-card {
+  background-color: rgba(46, 52, 50, 0.88);
+  border: 3.5px solid #f2bcbc; /* Soft round pinkish pill border styling */
+  border-radius: 44px;
+  width: 100%;
+  max-width: 500px;
+  padding: 45px 35px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.field-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.dark-field-title {
+  color: #1f2422;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.dark-field-title.font-small {
+  font-size: 14px;
+}
+
+.dark-field-title.central-align {
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+}
+
+/* Input Fields Common Style Mint Tint */
+input[type="text"],
+input[type="tel"] {
+  width: 100%;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 14px;
+  background-color: #f1f9f6;
+  color: #2b302e;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+input::placeholder {
+  color: #a3aeaa;
+  font-weight: 700;
+}
+
+/* Compound Custom Prefix Input Elements */
+.phone-input-row,
+.prefix-input-container {
+  display: flex;
+  background-color: #f1f9f6;
+  border-radius: 14px;
+  align-items: center;
+  padding-left: 18px;
+  overflow: hidden;
+}
+
+.area-code,
+.inline-label {
+  color: #2b302e;
+  font-weight: 700;
+  font-size: 15px;
+  padding-right: 8px;
+  border-right: 1px solid #d2ded9;
+}
+
+.inline-label {
+  border-right: none;
+  white-space: nowrap;
+  color: #7a8581;
+}
+
+.phone-input-row input,
+.prefix-input-container input {
+  background-color: transparent;
+}
+
+.split-row {
+  display: flex;
+  gap: 12px;
+}
+
+.split-row > * {
+  flex: 1;
+}
+
+/* Step 2 File Upload Mock Component UI */
+.file-upload-placeholder-btn {
+  background-color: #f1f9f6;
+  width: 100%;
+  padding: 15px;
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.file-upload-placeholder-btn span {
+  color: #93a19c;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Wizard Dynamic Controllers Buttons */
+.action-button-set {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.wizard-submit-btn {
+  flex: 2;
+  background-color: #d97736;
+  color: #ffffff;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.wizard-submit-btn:hover {
+  background-color: #c4652a;
+}
+
+.wizard-back-btn {
+  flex: 1;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Entry Animation Transitions */
+.animate-fade-in {
+  animation: fadeInFrame 0.35s ease-out forwards;
+}
+
+@keyframes fadeInFrame {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Clean Responsive Adaptations */
+@media (max-width: 992px) {
+  .content-container { flex-direction: column; }
+  .stepper-sidebar { padding: 40px 20px; align-items: center; }
+  .form-panel-wrapper { padding: 20px; }
+  .glass-form-card { max-width: 100%; }
+}

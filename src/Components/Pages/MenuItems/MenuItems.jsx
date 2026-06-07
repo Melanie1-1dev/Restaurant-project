@@ -91,7 +91,7 @@ const MenuItems = () => {
       {/* SIDEBAR */}
       <aside className="sidebar">
         <div className="brand">
-          <h1 className="brand-name">MissMori</h1>
+          <h1 className="brand-name">MissMore</h1>
           <p className="brand-sub">Kitchen Management</p>
         </div>
 
@@ -112,7 +112,7 @@ const MenuItems = () => {
             <UtensilsCrossed size={20} />
             <span>Menu</span>
           </div>
-          <Link to="/customers" className="nav-link-wrapper">    
+          <Link to="/an-other-order" className="nav-link-wrapper">    
             <div className="nav-item">
               <Users size={20} />
               <span>Customers</span>

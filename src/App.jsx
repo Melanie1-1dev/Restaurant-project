@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './Components/Login/Login';
 import LandingPage from './Components/LandingPage/LandingPage';
 import CreateAccount from './Components/CreateAccount/CreateAccount';
+import RestaurantForm from './Components/RestaurantForm/RestaurantForm';
 
 // Management & Workspace Panels
 import RestaurantOwner from './Components/RestaurantOwner/RestaurantOwner';
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/create-account" element={<CreateAccount />} />
+        <Route path="/restaurant-form" element={<RestaurantForm />} />
 
         {/* Dashboard Panels */}
         <Route path="/dashbord" element={<Dashbord />} />
