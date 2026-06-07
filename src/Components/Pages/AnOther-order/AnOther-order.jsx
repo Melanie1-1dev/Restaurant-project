@@ -99,11 +99,12 @@ export default function AnOtherOrder() {
         </nav>
 
         <div className="no-nav-config-label">Configuration</div>
-        <div style={{ padding:"0 12px" }}>
+      <Link to="/profile-dashboard">  <div style={{ padding:"0 12px" }}>
           <button className="no-nav-item">
             <span className="no-nav-icon">⚙</span>Settings
           </button>
         </div>
+      </Link>
 
         <div className="no-sidebar-user">
           <div className="no-user-avatar">KJ</div>

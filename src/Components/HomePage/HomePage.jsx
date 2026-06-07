@@ -20,6 +20,15 @@ const scrollToExperience = () => {
 };
 
 
+const scrollToContact = () => {
+  const element = document.getElementById("footer-section");  
+  if(element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+
+
 const CATEGORIES = [
   { id: 1, name: "Pizza", count: 164, image: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?q=80&w=400&auto=format&fit=crop" },
   { id: 2, name: "Bread", count: 42, image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=400&auto=format&fit=crop" },
@@ -68,7 +77,7 @@ export default function HomePage() {
   function handleSubscribe(e) {
     e.preventDefault();
     if (email.trim()) {
-      alert(`Subscribed ${email} to culinary updates!`);
+      alert(`Subscribed ${email} to MissMore updates!`);
       setEmail("");
     }
   }
@@ -76,6 +85,33 @@ export default function HomePage() {
   function handleCityClick(city) {
     setSearch(city);
   }
+
+
+  const FacebookIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+  </svg>
+);
+
+const InstagramIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <circle cx="12" cy="12" r="4" fill="currentColor"/>
+    <circle cx="17" cy="7" r="1.5" fill="currentColor"/>
+  </svg>
+);
+
+const XIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25l-7.165 8.43L3.75 2.25H2.25l7.59 10.95L2.25 21.75h3.09l6.615-7.8 6.59 7.8h3.09L15.82 12l7.424-9.75z"/>
+  </svg>
+);
+
+const LinkedInIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-.5 15.5v-9h-3v9h3zm-11 0v-9h3v9h-3zm-1-12a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/>
+  </svg>
+);
 
   return (
     <div className="home-root">
@@ -98,6 +134,10 @@ export default function HomePage() {
           else if (item === "Experience") { 
           scrollToExperience();
         }   
+
+        else if (item === "Contact") {
+          scrollToContact();
+        }
     
 
       }}
@@ -264,7 +304,118 @@ export default function HomePage() {
       </section>
 
       {/* ── NEWSLETTER ENVELOPE BOX ── */}
-      <section className="home-newsletter-section">
+
+
+      {/* ── FULL FOOTER ── */}
+<footer className="home-footer" id="footer-section">
+  <div className="footer-container">
+    {/* Main Footer Content */}
+    <div className="footer-main">
+      {/* Left - Brand */}
+      <div className="footer-brand">
+        <div className="home-logo footer-logo">Miss<span>More</span></div>
+        <p className="footer-description">
+          Delivering happy, delicious food with exceptional service. 
+          Your satisfaction is our priority. We combine tradition and modernity in every delivery.
+        </p>
+
+        {/* Rating */}
+        <div className="footer-rating">
+          <div className="rating-circle">4.8/5</div>
+          <div>
+            <div className="rating-stars">★★★★★</div>
+            <p>Based on 1,234 customer reviews</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Benefits */}
+      <div className="footer-column">
+        <h4>BENEFITS</h4>
+        <ul>
+          <li>🚀 Order Online Now</li>
+          <li>📍 Track Reservation</li>
+          <li>🍽️ Catering Booking</li>
+          <li>🚚 Daily Delivery Service</li>
+        </ul>
+      </div>
+
+      {/* Quick Links */}
+      <div className="footer-column">
+        <h4>QUICK LINKS</h4>
+        <ul>
+          <li><a href="#home-section">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      {/* Contact Us */}
+      <div className="footer-column">
+        <h4>CONTACT US</h4>
+        <ul>
+          <li>📍 1234 Main Street, Kigali, Rwanda</li>
+          <li>📞 +250 788 123 456</li>
+          <li>✉️ hello@missmore.rw</li>
+        </ul>
+      </div>
+
+      {/* Newsletter */}
+      <div className="footer-newsletter">
+        <h4>SUBSCRIBE TO NEWSLETTER</h4>
+        <form className="newsletter-action-form" onSubmit={handleSubscribe}>
+          <input 
+            type="email" 
+            placeholder="Your Email address..." 
+            className="newsletter-email-field"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+          />
+          <button type="submit" className="newsletter-submit-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    {/* Bottom Bar */}
+    <div className="footer-bottom">
+      <div className="footer-social">
+        <a href="#" aria-label="Facebook" className="social-icon">
+          <FacebookIcon />
+        </a>
+        <a href="#" aria-label="Instagram" className="social-icon">
+          <InstagramIcon />
+        </a>
+        <a href="#" aria-label="X (Twitter)" className="social-icon">
+          <XIcon />
+        </a>
+        <a href="#" aria-label="LinkedIn" className="social-icon">
+          <LinkedInIcon />
+        </a>
+      </div>
+
+      <div className="footer-apps">
+        <a href="#" className="app-badge google-play">
+          GET IT ON<br/><strong>Google Play</strong>
+        </a>
+        <a href="#" className="app-badge app-store">
+          Download on the<br/><strong>App Store</strong>
+        </a>
+      </div>
+
+      <div className="footer-copyright">
+        © 2026 MissMore. All rights reserved.<br />
+        Privacy Policy | Terms of Service
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+      {/* <section className="home-newsletter-section" id="footer-section">
         <div className="newsletter-inner-box">
         <h1> <span className="color-blue"> Miss </span> <span className="color-orange">More</span></h1>
           <p className="newsletter-subtext">Subscribe to our newsletter for exclusive options, chef recipes, and weekly updates.</p>
@@ -281,7 +432,7 @@ export default function HomePage() {
             <button type="submit" className="newsletter-submit-btn">Subscribe</button>
           </form>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

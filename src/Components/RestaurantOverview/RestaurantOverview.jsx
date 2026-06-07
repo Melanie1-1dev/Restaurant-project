@@ -1,6 +1,6 @@
 import React from 'react';
 import './RestaurantOverview.css';
-
+import { Link } from 'react-router-dom';
 const RestaurantOverview = () => {
   return (
     <div className="overview-viewport">
@@ -132,12 +132,11 @@ const RestaurantOverview = () => {
 
             {/* Action Group Block Layout */}
             <div className="menu-builder-action-buttons-row">
-              <button type="button" className="action-pill-btn brand-orange-bg">
-                Add More
-              </button>
-              <button type="button" className="action-pill-btn white-elevated-bg">
-                Add Order
-              </button>
+     <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <button type="button" formAction={'submitt'} className="action-pill-btn brand-orange-bg">
+                  Submit
+                </button>
+              </Link>
             </div>
 
           </form>

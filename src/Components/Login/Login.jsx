@@ -50,10 +50,9 @@ export default function Login({ onLoginSuccess }) {
   const [passErr,   setPassErr]   = useState("");
   const [loading,   setLoading]   = useState(false);
   const [toast,     setToast]     = useState({ msg:"", type:"", show:false });
-  const [activeNav, setActiveNav] = useState("Home");
 
   const googleBtnRef = useRef(null);
-  const navigate     = useNavigate(); /* ← NOW USED for redirect */
+  const navigate     = useNavigate();
 
   /* ── toast ───────────────────────────────── */
   const showToast = (msg, type = "success") => {
@@ -150,27 +149,6 @@ export default function Login({ onLoginSuccess }) {
         {toast.msg}
       </div>
 
-{/*     
-      <header className="login-header">
-        <div className="login-logo">Miss<span>More</span></div>
-        <nav className="login-nav">
-          {["Home","About","Experience","Contact","Dashboard"].map(item => (
-            <button
-              key={item}
-              className={[
-                "login-nav-link",
-                item === "Contact"   ? "contact"   : "",
-                item === "Dashboard" ? "dashboard" : "",
-                activeNav === item   ? "nav-active": "",
-              ].filter(Boolean).join(" ")}
-              onClick={() => setActiveNav(item)}
-            >
-              {item}
-            </button>
-          ))}
-        </nav>
-      </header> */}
-
       {/* BODY */}
       <div className="login-body">
         <div className="login-blob" />
@@ -181,7 +159,7 @@ export default function Login({ onLoginSuccess }) {
             <h1>
               ☺️ Welcome Back!👋,{"\n\n"}
               <br />
-              Connecting customers and restaurant owners through a 
+              Connecting customers and restaurant owners through a 
               comprehensive ecosystem designed to enhance convenience,
                efficiency, and service excellence..
             </h1>
@@ -258,17 +236,83 @@ export default function Login({ onLoginSuccess }) {
               <button className="reset" onClick={handleReset}>RESET</button>
             </p>
 
-            {/* OR Google */}
+            {/* OR Divider */}
             <div className="login-or">
               <div className="login-or-line" />
               OR continue with
               <div className="login-or-line" />
             </div>
 
-            {/* Official Google button (renders here when script loads) */}
+            {/* Official Google button */}
             <div ref={googleBtnRef} className="login-google-wrap" />
 
+            {/* DIRECT ACCESS ROUTE SELECTIONS */}
+            <div className="access-options-list">
+              
+              {/* Option 1: Customer */}
+              <div className="access-item" onClick={() => navigate("/missmore-signin")}>
+                <div className="access-icon-bg customer-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <Link to="/missmore-signin" style={{ textDecoration: 'none', color: 'inherit', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div className="access-text">
+                    <h3>Login as Customer</h3>
+                    <p>Browse restaurants, place orders</p>
+                  </div>
+                  <div className="access-arrow">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </div>
+                </Link>
+              </div>
 
+              {/* Option 2: Restaurant Manager */}
+              <div className="access-item" onClick={() => navigate("/CreateAnCount")}>
+                <div className="access-icon-bg manager-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </div>
+                <Link to="/CreateAnCount" style={{ textDecoration: 'none', color: 'inherit', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div className="access-text">
+                    <h3>Login as Restaurant Manager</h3>
+                    <p>Manage orders, menu & staff</p>
+                  </div>
+                  <div className="access-arrow">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Option 3: Restaurant Owner */}
+              <div className="access-item" onClick={() => navigate("/restaurant-form")}>
+                <div className="access-icon-bg owner-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                </div>
+                <Link to="/restaurant-form" style={{ textDecoration: 'none', color: 'inherit', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div className="access-text">
+                    <h3>Register as Restaurant Owner</h3>
+                    <p>Create your restaurant account</p>
+                  </div>
+                  <div className="access-arrow">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </div>
+                </Link>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>

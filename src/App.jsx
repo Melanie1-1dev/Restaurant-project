@@ -8,7 +8,8 @@ import CreateAccount from './Components/CreateAccount/CreateAccount';
 import RestaurantForm from './Components/RestaurantForm/RestaurantForm';
 import RestaurantWizard from './Components/RestaurantWizard/RestaurantWizard';
 import RestaurantOverview from './Components/RestaurantOverview/RestaurantOverview';
-
+import MissMoreSignIn from './Components/MissMoreSignIn/MissMoreSignIn';
+import CreateAnCount from './Components/CreateAnCount/CreateAnCount';
 // Management & Workspace Panels
 import RestaurantOwner from './Components/RestaurantOwner/RestaurantOwner';
 import Orders from './Components/Orders/Orders';
@@ -22,6 +23,8 @@ import Dashbord from './Components/Pages/Dashbord/Dashbord';
 import NewOrder from './Components/Pages/NewOrder/NewOrder';
 import AnOtherOrder from './Components/Pages/AnOther-order/AnOther-order';
 import MenuItems from './Components/Pages/MenuItems/MenuItems';
+import ProfileDashboard from './Components/ProfileDashboard/ProfileDashboard';
+
 
 // Fix: Commented or imported chart support if you decide to keep a dedicated route page
 // import SalesChart from './SalesChart'; 
@@ -39,11 +42,15 @@ const App = () => {
         <Route path="/restaurant-overview" element={<RestaurantOverview />} />
 
 
+
         {/* Dashboard Panels */}
         <Route path="/dashbord" element={<Dashbord />} />
         <Route path="/new-order" element={<NewOrder />} />
         <Route path="/an-other-order" element={<AnOtherOrder />} />
         <Route path="/menu-items" element={<MenuItems />} />
+        <Route path="/profile-dashboard" element={<ProfileDashboard />} />
+        <Route path="/missmore-signin" element={<MissMoreSignIn />} />
+        <Route path="/CreateAnCount" element={<CreateAnCount />} />
 
         {/* Operational Modules */}
         <Route path="/restaurant-owner" element={<RestaurantOwner />} />

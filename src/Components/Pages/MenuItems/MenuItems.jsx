@@ -118,10 +118,12 @@ const MenuItems = () => {
               <span>Customers</span>
             </div>
           </Link>
-          <div className="nav-item">
-            <Settings size={20} />
-            <span>Settings</span>
-          </div>
+          <Link to="/profile-dashboard" className="nav-link-wrapper">    
+            <div className="nav-item">
+              <Settings size={20} />
+              <span>Settings</span>
+            </div>
+          </Link>
         </nav>
 
         <div className="revenue-card">

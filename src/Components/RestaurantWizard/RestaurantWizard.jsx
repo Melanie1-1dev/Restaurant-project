@@ -126,9 +126,11 @@ const RestaurantWizard = () => {
                 </div>
               </div>
 
-           <Link to="/restaurant-overview">   <button type="submit" className="continue-btn">
+           <Link to="/restaurant-overview" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <button type="submit" className="continue-btn">
                 Continue <span>→</span>
-              </button></Link>
+              </button>
+            </Link>
             </form>
           </div>
         </div>

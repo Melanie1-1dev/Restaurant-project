@@ -16,7 +16,7 @@ const DashboardLayout = () => {
       {/* GLOBAL FIXED SIDEBAR */}
       <aside className="sidebar">
         <div className="brand">
-          <h1 className="brand-name">MissMori</h1>
+          <h1 className="brand-name">MissMore</h1>
           <p className="brand-sub">Kitchen Management</p>
         </div>
 
