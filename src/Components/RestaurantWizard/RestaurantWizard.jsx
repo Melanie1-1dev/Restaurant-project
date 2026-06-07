@@ -1,241 +1,148 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './RestaurantWizard.css';
+import { Link } from 'react-router-dom';
 
 const RestaurantWizard = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({
-    // Step 1 data
-    restaurantName: '',
-    restaurantCompleteName: '',
-    contactNumber: '',
-    ownerNumber: '',
-    ownerName: '',
-    restaurantOwnerName: '',
-    // Step 2 data
-    restaurantType: 'Restaurant',
-    cuisineType: 'African',
-    openingFrom: '14:00 pm',
-    openingTo: '02:00 pm'
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleNext = (e) => {
-    e.preventDefault();
-    if (currentStep === 1) {
-      setCurrentStep(2);
-    } else {
-      alert('Form submission or next phase triggered!');
-    }
-  };
-
-  const handleBack = () => {
-    setCurrentStep(1);
-  };
-
   return (
-    <div className="wizard-page">
-      {/* Universal Top Navigation Header */}
-      <nav className="top-nav">
-        <div className="brand">Miss<span className="brand-italic">More</span></div>
-        <ul className="menu-links">
-          <li>Home</li>
-          <li>About</li>
-          <li className="active-tab">Experience</li>
-          <li>Contact</li>
-          <li>Dashboard</li>
-        </ul>
-        <div className="utility-icons">
-          <span className="util-icon">🔍</span>
-          <span className="util-icon">🛒</span>
-          <span className="util-icon">🔔</span>
-          <span className="util-icon profile-badge">👤+</span>
-        </div>
-      </nav>
-
-      {/* Main Workspace Split View */}
-      <main className="content-container">
-        
-        {/* Left Side: Stepper Progress Sidebar Text */}
-        <section className="stepper-sidebar">
+    <div className="profile-container">
+      {/* Background Section with Hero Text */}
+      <div className="hero-section">
+        <div className="hero-content">
+          <div className="logo">Miss<span>More</span></div>
+          <h1 className="hero-title">Create your <br /><span>restaurant</span> profile</h1>
           
-          <div className={`step-text-block ${currentStep === 1 ? 'active-step' : ''}`}>
-            <h3>1. create your restaurant profile</h3>
-            <p className="orange-highlight-label">Restaurant information</p>
+          {/* Vertical Stepper */}
+          <div className="stepper">
+            <div className="step completed">
+              <div className="step-number">1</div>
+              <div className="step-info">
+                <h3>Restaurant information</h3>
+                <p>Basic information about your restaurant</p>
+              </div>
+            </div>
+            <div className="step active">
+              <div className="step-number">2</div>
+              <div className="step-info">
+                <h3>Restaurant types & timings</h3>
+                <p>Select restaurant type and opening hours</p>
+              </div>
+            </div>
+            <div className="step">
+              <div className="step-number">3</div>
+              <div className="step-info">
+                <h3>Create your menu</h3>
+                <p>Add menu, restaurant and food images</p>
+              </div>
+            </div>
+            <div className="step">
+              <div className="step-number">4</div>
+              <div className="step-info">
+                <h3>Review & publish</h3>
+                <p>Review and publish your restaurant profile</p>
+              </div>
+            </div>
           </div>
 
-          <div className={`step-text-block ${currentStep === 2 ? 'active-step' : ''}`}>
-            <h3>2. Restaurant names, address, details, details owners</h3>
-            <p className="orange-highlight-label">Restaurant Types and Timings</p>
+          <div className="edit-info-box">
+             <span className="lightbulb-icon">💡</span>
+             <p>You can always edit these information later</p>
           </div>
+        </div>
+      </div>
 
-          <div className="step-text-block inactive-future">
-            <h3>3. Establishments & Cuisine types. Opening hours</h3>
-            <p className="gold-text-label">Create your menu</p>
+      {/* Form Content Section */}
+      <div className="form-section">
+        <header className="form-header">
+          <div className="header-links">
+            <span className="help">❔ Need help?</span>
+            <div className="user-profile">
+              <img src="https://i.pravatar.cc/100?u=kagabo" alt="Kagabo Jacques" />
+              <div className="user-text">
+                <span className="user-name">Kagabo Jacques</span>
+                <span className="user-role">Restaurant Owner</span>
+              </div>
+              <span className="chevron">⌄</span>
+            </div>
           </div>
+        </header>
 
-          <div className="step-text-block inactive-future">
-            <h3>4. Menu, Restaurant, food images</h3>
-          </div>
-        </section>
+        <div className="form-card-container">
+          <div className="form-card">
+            <span className="step-indicator">Step 2 of 4</span>
+            <h2 className="form-title">Restaurant Information</h2>
+            <p className="form-subtitle">Add basic information about your restaurant.</p>
 
-        {/* Right Side: Curved Overlay Glass Form Container */}
-        <section className="form-panel-wrapper">
-          <div className="glass-form-card">
-            
-            <form onSubmit={handleNext}>
-              
-              {/* --- STEP 1 FORM FIELDS --- */}
-              {currentStep === 1 && (
-                <div className="form-step-view animate-fade-in">
-                  <div className="field-section">
-                    <h4 className="dark-field-title">Restaurant information</h4>
-                    <input 
-                      type="text" 
-                      name="restaurantName" 
-                      placeholder="Restaurant Name" 
-                      value={formData.restaurantName} 
-                      onChange={handleChange} 
-                      required 
-                    />
-                    <input 
-                      type="text" 
-                      name="restaurantCompleteName" 
-                      placeholder="Restaurant complete Name" 
-                      value={formData.restaurantCompleteName} 
-                      onChange={handleChange} 
-                      required 
-                    />
-                  </div>
-
-                  <div className="field-section">
-                    <h4 className="dark-field-title">Contact numbers @ Restaurant</h4>
-                    <div className="phone-input-row">
-                      <span className="area-code">+250</span>
-                      <input 
-                        type="tel" 
-                        name="contactNumber" 
-                        placeholder="Mobile number" 
-                        value={formData.contactNumber} 
-                        onChange={handleChange} 
-                        required 
-                      />
-                    </div>
-                  </div>
-
-                  <div className="field-section">
-                    <h4 className="dark-field-title">Restaurant owner details</h4>
-                    <div className="phone-input-row">
-                      <span className="area-code">+250</span>
-                      <input 
-                        type="tel" 
-                        name="ownerNumber" 
-                        placeholder="Mobile number" 
-                        value={formData.ownerNumber} 
-                        onChange={handleChange} 
-                        required 
-                      />
-                    </div>
-                    <div className="split-row">
-                      <input 
-                        type="text" 
-                        name="ownerName" 
-                        placeholder="Owner Name" 
-                        value={formData.ownerName} 
-                        onChange={handleChange} 
-                      />
-                      <input 
-                        type="text" 
-                        name="restaurantOwnerName" 
-                        placeholder="Restaurant owner Name" 
-                        value={formData.restaurantOwnerName} 
-                        onChange={handleChange} 
-                      />
-                    </div>
+            <form className="restaurant-form" onSubmit={(e) => e.preventDefault()}>
+              <div className="form-row">
+                <div className="input-group">
+                  <label>Restaurant Type</label>
+                  <div className="custom-select">
+                    <span className="icon">🏢</span>
+                    <select defaultValue="Restaurant">
+                      <option value="Restaurant">Restaurant</option>
+                      <option value="Pub">Pub</option>
+                      <option value="Cafe">Cafe</option>
+                    </select>
                   </div>
                 </div>
-              )}
-
-              {/* --- STEP 2 FORM FIELDS (Matching image_75c044.png) --- */}
-              {currentStep === 2 && (
-                <div className="form-step-view animate-fade-in">
-                  <div className="field-section">
-                    <h4 className="dark-field-title font-small">
-                      Restaurant Type(restaurant, pub, hotel, coffeeshop and others).
-                    </h4>
-                    <input 
-                      type="text" 
-                      name="restaurantType" 
-                      placeholder="Restaurant" 
-                      value={formData.restaurantType} 
-                      onChange={handleChange} 
-                      required 
-                    />
-                    <input 
-                      type="text" 
-                      name="cuisineType" 
-                      placeholder="African" 
-                      value={formData.cuisineType} 
-                      onChange={handleChange} 
-                      required 
-                    />
-                  </div>
-
-                  <div className="field-section">
-                    <h4 className="dark-field-title central-align">Opening Hours</h4>
-                    <div className="split-row">
-                      <div className="prefix-input-container">
-                        <span className="inline-label">From |</span>
-                        <input 
-                          type="text" 
-                          name="openingFrom" 
-                          placeholder="14:00 pm" 
-                          value={formData.openingFrom} 
-                          onChange={handleChange} 
-                        />
-                      </div>
-                      <div className="prefix-input-container">
-                        <span className="inline-label">To |</span>
-                        <input 
-                          type="text" 
-                          name="openingTo" 
-                          placeholder="02:00 pm" 
-                          value={formData.openingTo} 
-                          onChange={handleChange} 
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="field-section">
-                    <h4 className="dark-field-title central-align font-bold">
-                      Upload images (Pictures or logo)
-                    </h4>
-                    <div className="file-upload-placeholder-btn">
-                      <span>Choose images</span>
-                    </div>
+                <div className="input-group">
+                  <label>Cuisine Type</label>
+                  <div className="custom-select">
+                    <span className="icon">🌐</span>
+                    <select defaultValue="African">
+                      <option value="African">African</option>
+                      <option value="Continental">Continental</option>
+                    </select>
                   </div>
                 </div>
-              )}
-
-              {/* Form Navigation Controls */}
-              <div className="action-button-set">
-                {currentStep > 1 && (
-                  <button type="button" className="wizard-back-btn" onClick={handleBack}>
-                    ← Back
-                  </button>
-                )}
-                <button type="submit" className="wizard-submit-btn">
-                  {currentStep === 1 ? 'Save & Continue' : 'Finish Setup'}
-                </button>
               </div>
 
+              <div className="input-group">
+                <label>Opening Hours</label>
+                <div className="time-row">
+                  <div className="time-picker">
+                    <span className="time-label">From</span>
+                    <div className="time-input">
+                      <span className="icon">🕒</span>
+                      <select><option>14:00 PM</option></select>
+                    </div>
+                  </div>
+                  <span className="separator">-</span>
+                  <div className="time-picker">
+                    <div className="time-input">
+                      <span className="icon">🕒</span>
+                      <select><option>02:00 AM</option></select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="input-group-1">
+                <label>Upload Images (Pictures or logo)</label>
+                <div className="upload-zone">
+                  <div className="upload-icon">☁️</div>
+                  <p className="upload-text">Choose Images</p>
+                  <p className="upload-subtext">JPG, PNG up to 5MB</p>
+                </div>
+              </div>
+
+           <Link to="/restaurant-overview">   <button type="submit" className="continue-btn">
+                Continue <span>→</span>
+              </button></Link>
             </form>
           </div>
-        </section>
-      </main>
+        </div>
+
+        {/* Sync System Base Utility Navigation Bar */}
+        <footer className="form-navigation-footer">
+          <span className="action-draft-link">Save as draft</span>
+          <div className="footer-right-meta">
+            <span className="nav-back-btn">Back</span>
+            <div className="footer-pipe-divider"></div>
+            <span className="progress-lbl">Progress: <strong className="orange-pct">50%</strong></span>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };

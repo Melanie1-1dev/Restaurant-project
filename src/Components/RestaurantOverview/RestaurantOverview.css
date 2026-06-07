@@ -1,0 +1,385 @@
+/* Styling Configurations matching your image colors */
+:root {
+  --color-accent-orange: #FF8A48;
+  --color-pill-active-bg: #F5D3BC;
+  --color-sidebar-bg-tint: #F3ECE5; /* Light creamy undertone matching image base */
+  --color-workspace-bg-tint: #FDFBFA;
+  --color-text-primary-dark: #1F1F1F;
+  --color-text-muted-grey: #949494;
+  --sidebar-panel-width: 440px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Master Layout Framework Viewport Context */
+.overview-viewport {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-workspace-bg-tint);
+}
+
+/* ==========================================================================
+   LEFT SIDEBAR PANEL COMPONENT STYLES
+   ========================================================================== */
+.overview-sidebar {
+  width: var(--sidebar-panel-width);
+  height: 100%;
+  background-color: var(--color-sidebar-bg-tint);
+  flex-shrink: 0;
+  padding: 50px 45px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.sidebar-brand-logo {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--color-text-primary-dark);
+  letter-spacing: -0.5px;
+  margin-bottom: 55px;
+}
+.sidebar-brand-logo span {
+  color: var(--color-accent-orange);
+  font-style: italic;
+}
+
+.sidebar-nav-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.nav-step-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-row-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.step-row-num {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text-primary-dark);
+}
+
+.step-row-txt {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text-primary-dark);
+  line-height: 1.3;
+}
+
+.step-row-subtext {
+  padding-left: 22px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #595959;
+  margin-top: 4px;
+}
+
+/* Nested Child Navigation Configurations */
+.step-nested-items {
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.nested-item {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text-muted-grey);
+}
+
+.nested-item.active-target {
+  color: var(--color-text-primary-dark);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+}
+
+.nested-item.standard-dark-weight {
+  color: var(--color-text-primary-dark);
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+/* Footer Anchor Block Element Styling */
+.nav-step-footer-block {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.vertical-dashed-connector {
+  padding-left: 6px;
+  line-height: 1;
+  color: #BDBDBD;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.footer-step-indicator-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-step-circle {
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-accent-orange);
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.footer-step-txt {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text-muted-grey);
+}
+
+
+/* ==========================================================================
+   RIGHT WORKSPACE CANVAS COMPONENT STYLES
+   ========================================================================== */
+.overview-workspace {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 60px;
+  overflow: hidden;
+}
+
+/* Utilities System Top Header */
+.workspace-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 45px;
+  flex-shrink: 0;
+}
+
+.workspace-view-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-text-primary-dark);
+  letter-spacing: -0.5px;
+}
+
+.workspace-user-profile-cluster {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.utility-icon-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.profile-vertical-divider {
+  color: #E0E0E0;
+  font-size: 18px;
+}
+
+.profile-user-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile-user-name {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--color-text-primary-dark);
+  line-height: 1.2;
+  text-align: right;
+}
+
+.profile-user-avatar-placeholder {
+  width: 36px;
+  height: 36px;
+  background-color: #EFEFEF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* Workspace Frame Layout Boundaries Scrolling Rules */
+.workspace-form-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Horizontal Categories Pill Tabs Components Row */
+.horizontal-menu-pill-tabs {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.menu-pill-tab {
+  background-color: #FFFFFF;
+  border: 1px solid #EAEAEA;
+  color: var(--color-accent-orange);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.menu-pill-tab.active {
+  background-color: var(--color-pill-active-bg);
+  color: var(--color-text-primary-dark);
+  border-color: var(--color-pill-active-bg);
+}
+
+/* Minimalist Architecture Borderless Form Layout Framework */
+.menu-builder-minimal-form {
+  max-width: 520px;
+  width: 100%;
+}
+
+.minimal-form-group {
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.minimal-field-label {
+  font-size: 15px;
+  font-weight: 800;
+  color: #333333;
+  margin-bottom: 12px;
+}
+
+.minimal-text-input-field {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid #E0E0E0;
+  background-color: transparent;
+  padding: 6px 0 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--color-text-primary-dark);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.minimal-text-input-field:focus {
+  border-color: var(--color-accent-orange);
+}
+.minimal-text-input-field::placeholder {
+  color: #C2C2C2;
+}
+
+/* Static Component Text File Click Row Row UI Masks */
+.minimal-file-upload-trigger-row {
+  border-bottom: 1.5px solid #E0E0E0;
+  padding: 6px 0 10px;
+  cursor: pointer;
+}
+
+.upload-trigger-placeholder-txt {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #C2C2C2;
+}
+
+/* Pill Core Buttons Action Tray Row */
+.menu-builder-action-buttons-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 45px;
+  padding-bottom: 40px;
+}
+
+.action-pill-btn {
+  padding: 14px 44px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: transform 0.1s ease, opacity 0.15s ease;
+}
+.action-pill-btn:active {
+  transform: scale(0.98);
+}
+
+.action-pill-btn.brand-orange-bg {
+  background-color: var(--color-accent-orange);
+  color: #FFFFFF;
+}
+.action-pill-btn.brand-orange-bg:hover {
+  opacity: 0.92;
+}
+
+.action-pill-btn.white-elevated-bg {
+  background-color: #FFFFFF;
+  color: var(--color-text-primary-dark);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
+  border: 1px solid #F0F0F0;
+}
+.action-pill-btn.white-elevated-bg:hover {
+  background-color: #FAFAFA;
+}
+
+/* Responsive Adaptive Architecture Layout Handlers */
+@media (max-width: 900px) {
+  .overview-viewport {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .overview-sidebar {
+    width: 100%;
+    height: auto;
+    padding: 35px 30px;
+  }
+  .overview-workspace {
+    height: auto;
+    padding: 35px 30px;
+  }
+  .workspace-form-scroll-container {
+    overflow-y: visible;
+  }
+}

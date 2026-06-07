@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './RestaurantForm.css';
-
+import { Link } from 'react-router-dom';
 const RestaurantForm = () => {
   // Use state to manage the active step (1 of 4)
   const [currentStep, setCurrentStep] = useState(1);
@@ -192,7 +192,7 @@ const RestaurantForm = () => {
         
         <div className="footer-buttons">
           <button className="btn-secondary" onClick={handleSaveDraft}>💾 Save Draft</button>
-          <button className="btn-primary" onClick={handleContinue}>Continue →</button>
+        <Link to="/restaurant-wizard">  <button className="btn-primary" onClick={handleContinue}>Continue →</button></Link>
         </div>
       </footer>
     </div>

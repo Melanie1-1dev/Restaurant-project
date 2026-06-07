@@ -6,6 +6,8 @@ import Login from './Components/Login/Login';
 import LandingPage from './Components/LandingPage/LandingPage';
 import CreateAccount from './Components/CreateAccount/CreateAccount';
 import RestaurantForm from './Components/RestaurantForm/RestaurantForm';
+import RestaurantWizard from './Components/RestaurantWizard/RestaurantWizard';
+import RestaurantOverview from './Components/RestaurantOverview/RestaurantOverview';
 
 // Management & Workspace Panels
 import RestaurantOwner from './Components/RestaurantOwner/RestaurantOwner';
@@ -33,6 +35,9 @@ const App = () => {
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/restaurant-form" element={<RestaurantForm />} />
+        <Route path="/restaurant-wizard" element={<RestaurantWizard />} />
+        <Route path="/restaurant-overview" element={<RestaurantOverview />} />
+
 
         {/* Dashboard Panels */}
         <Route path="/dashbord" element={<Dashbord />} />

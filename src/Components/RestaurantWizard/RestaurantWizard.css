@@ -1,286 +1,262 @@
-/* Base Style Overhauls */
+:root {
+  --orange: #FF6B00;
+  --dark-bg: #141412;
+  --text-grey: #667085;
+  --input-bg: #F9FAFB;
+  --border-color: #EAECF0;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-.wizard-page {
-  background-color: #000000;
-  color: #ffffff;
-  min-height: 100vh;
+.profile-container {
   display: flex;
-  flex-direction: column;
-}
-
-/* Navbar Elements */
-.top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background-color: #000000;
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.brand {
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-}
-
-.brand-italic {
-  color: #d97736;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.menu-links {
-  display: flex;
-  list-style: none;
-  gap: 32px;
-}
-
-.menu-links li {
-  color: #8c8c8c;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.menu-links li:hover,
-.menu-links li.active-tab {
-  color: #ffffff;
-}
-
-.utility-icons {
-  display: flex;
-  gap: 24px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-/* Page Split Content Area */
-.content-container {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  position: relative;
-  /* Dual purpose responsive reference image placement background style context */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('image_75c044.png');
-  background-size: cover;
-  background-position: center;
-}
-
-/* Step Sidebar Configuration */
-.stepper-sidebar {
-  flex: 1.1;
-  padding: 60px 0 60px 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 45px;
-}
-
-.step-text-block {
-  max-width: 420px;
-  opacity: 0.4;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.step-text-block.active-step {
-  opacity: 1;
-  transform: scale(1.02);
-}
-
-.step-text-block h3 {
-  font-size: 18px;
-  line-height: 1.4;
-  font-weight: 700;
-}
-
-.orange-highlight-label {
-  color: #d97736;
-  font-weight: 700;
-  margin-top: 6px;
-  font-size: 16px;
-}
-
-.gold-text-label {
-  color: #b58900;
-  font-weight: 700;
-  margin-top: 6px;
-}
-
-/* Highly Rounded Translucent Card Section */
-.form-panel-wrapper {
-  flex: 0.9;
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.glass-form-card {
-  background-color: rgba(46, 52, 50, 0.88);
-  border: 3.5px solid #f2bcbc; /* Soft round pinkish pill border styling */
-  border-radius: 44px;
-  width: 100%;
-  max-width: 500px;
-  padding: 45px 35px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-}
-
-.field-section {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 24px;
-}
-
-.dark-field-title {
-  color: #1f2422;
-  font-size: 16px;
-  font-weight: 800;
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-
-.dark-field-title.font-small {
-  font-size: 14px;
-}
-
-.dark-field-title.central-align {
-  text-align: center;
-  width: 100%;
-  font-size: 18px;
-}
-
-/* Input Fields Common Style Mint Tint */
-input[type="text"],
-input[type="tel"] {
-  width: 100%;
-  padding: 15px 20px;
-  border: none;
-  border-radius: 14px;
-  background-color: #f1f9f6;
-  color: #2b302e;
-  font-size: 15px;
-  font-weight: 700;
-}
-
-input::placeholder {
-  color: #a3aeaa;
-  font-weight: 700;
-}
-
-/* Compound Custom Prefix Input Elements */
-.phone-input-row,
-.prefix-input-container {
-  display: flex;
-  background-color: #f1f9f6;
-  border-radius: 14px;
-  align-items: center;
-  padding-left: 18px;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--dark-bg);
   overflow: hidden;
 }
 
-.area-code,
-.inline-label {
-  color: #2b302e;
-  font-weight: 700;
-  font-size: 15px;
-  padding-right: 8px;
-  border-right: 1px solid #d2ded9;
+/* Left Hero Aspect Banner Section */
+.hero-section {
+  flex: 1;
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url('image_74edb2.png');
+  background-size: cover;
+  background-position: center;
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
 }
 
-.inline-label {
-  border-right: none;
-  white-space: nowrap;
-  color: #7a8581;
+.logo {
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+.logo span { color: var(--orange); }
+
+.hero-title {
+  color: white;
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 45px;
+}
+.hero-title span { color: var(--orange); }
+
+/* Vertical Stepper Timeline Layout */
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
 }
 
-.phone-input-row input,
-.prefix-input-container input {
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  opacity: 0.45;
+}
+
+.step.active { opacity: 1; }
+.step.completed { opacity: 0.75; }
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.step.active .step-number {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+.step.completed .step-number {
+  border-color: rgba(255, 255, 255, 0.9);
   background-color: transparent;
 }
 
-.split-row {
+.step-info h3 { color: white; font-size: 15px; margin: 0; font-weight: 600; }
+.step-info p { color: #d0d5dd; font-size: 12px; margin: 4px 0 0; }
+
+.edit-info-box {
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 14px 18px;
+  border-radius: 12px;
   display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 12px;
+  max-width: 350px;
+}
+
+/* --- FIXED LAYER SYSTEM FOR THE RIGHT SIDE --- */
+.form-section {
+  flex: 1.25;
+  background-color: #F8F9FA;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Lock right side container strictly to viewport height */
+  position: relative;
+}
+
+/* Header Layer Stay on Top */
+.form-header {
+  padding: 24px 50px 10px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #F8F9FA;
+  z-index: 5; /* Sit clearly over scrolling card elements */
+  flex-shrink: 0;
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.help {
+  font-size: 14px;
+  color: var(--text-grey);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
   gap: 12px;
 }
+.user-profile img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.user-name { display: block; font-weight: 600; font-size: 13px; color: #101828; }
+.user-role { font-size: 11px; color: var(--text-grey); }
+.chevron { color: var(--text-grey); font-size: 12px; }
 
-.split-row > * {
+/* Dynamic scroll box bounded cleanly between head and foot */
+.form-card-container {
   flex: 1;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 50px; 
+  overflow-y: auto; /* Allow middle panel content to cleanly scroll internally if screen is small */
+  z-index: 1; /* Drop layer weight down below navbars */
 }
 
-/* Step 2 File Upload Mock Component UI */
-.file-upload-placeholder-btn {
-  background-color: #f1f9f6;
+.form-card {
   width: 100%;
-  padding: 15px;
-  border-radius: 14px;
+  border-radius: 40px;
+
+  max-width: 580px;
+  background: #ffffff;
+  padding: 40px 45px;
+  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.03);
+  margin: auto 0; /* Keeps card beautifully balanced inside workspace grid */
+}
+
+.step-indicator { color: var(--orange); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+.form-title { font-size: 26px; margin: 8px 0; color: #101828; font-weight: 700; }
+.form-subtitle { color: var(--text-grey); margin-bottom: 28px; font-size: 14px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.input-group { margin-bottom: 22px; }
+.input-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: #344054; }
+
+.custom-select, .time-input {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 13px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+select { border: none; background: transparent; width: 100%; outline: none; font-size: 14px; color: #101828; font-weight: 500; cursor: pointer; }
+
+.time-row { display: flex; align-items: center; gap: 12px; }
+.time-picker { flex: 1; }
+.time-label { font-size: 11px; color: var(--text-grey); display: block; margin-bottom: 6px; text-transform: uppercase; font-weight: 600; }
+.separator { margin-top: 20px; color: var(--text-grey); font-weight: 500; }
+
+.upload-zone {
+  border: 1px dashed #ced4da;
+  border-radius: 12px;
+  padding: 35px 20px;
   text-align: center;
   cursor: pointer;
+  background: #FCFCFD;
 }
 
-.file-upload-placeholder-btn span {
-  color: #93a19c;
-  font-weight: 700;
-  font-size: 14px;
-}
+.upload-icon { font-size: 24px; color: var(--orange); margin-bottom: 8px; }
+.upload-text { font-weight: 600; font-size: 14px; color: #101828; }
+.upload-subtext { font-size: 11px; color: var(--text-grey); margin-top: 4px; }
 
-/* Wizard Dynamic Controllers Buttons */
-.action-button-set {
-  display: flex;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-.wizard-submit-btn {
-  flex: 2;
-  background-color: #d97736;
-  color: #ffffff;
+.continue-btn {
+  width: 100%;
+  background-color: var(--orange);
+  color: white;
   border: none;
   padding: 16px;
-  border-radius: 14px;
-  font-size: 16px;
+  border-radius: 10px;
   font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.wizard-submit-btn:hover {
-  background-color: #c4652a;
-}
-
-.wizard-back-btn {
-  flex: 1;
-  background-color: transparent;
-  color: #ffffff;
-  border: 1px solid #ffffff;
-  padding: 16px;
-  border-radius: 14px;
   font-size: 15px;
-  font-weight: 600;
   cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Entry Animation Transitions */
-.animate-fade-in {
-  animation: fadeInFrame 0.35s ease-out forwards;
+/* Control Action Locked Bottom Footer */
+.form-navigation-footer {
+  height: 65px;
+  border-top: 1px solid var(--border-color);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  flex-shrink: 0;
+  z-index: 5; /* Forces footer to stay strictly on top layer */
 }
 
-@keyframes fadeInFrame {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+.action-draft-link { font-size: 14px; color: var(--text-grey); font-weight: 500; cursor: pointer; }
+.footer-right-meta { display: flex; align-items: center; gap: 18px; }
+.nav-back-btn { font-size: 14px; color: var(--text-grey); font-weight: 500; cursor: pointer; }
+.footer-pipe-divider { width: 1px; height: 18px; background-color: var(--border-color); }
+.progress-lbl { font-size: 14px; color: #101828; font-weight: 500; }
+.orange-pct { color: var(--orange); font-weight: 700; }
+
+@media (max-width: 1200px) {
+  .form-header, .form-card-container, .form-navigation-footer { padding-left: 30px; padding-right: 30px; }
 }
 
-/* Clean Responsive Adaptations */
-@media (max-width: 992px) {
-  .content-container { flex-direction: column; }
-  .stepper-sidebar { padding: 40px 20px; align-items: center; }
-  .form-panel-wrapper { padding: 20px; }
-  .glass-form-card { max-width: 100%; }
+@media (max-width: 991px) {
+  .profile-container { flex-direction: column; overflow-y: auto; }
+  .form-section { height: auto; }
+  .hero-section { padding: 40px 30px; }
+  .form-card-container { padding: 30px 20px 40px; }
+  .form-navigation-footer { position: relative; }
 }
