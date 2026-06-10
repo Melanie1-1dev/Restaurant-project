@@ -1,0 +1,30 @@
+{
+  "name": "restaurant-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.10.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.8.9",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.22.5",
+    "streamifier": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "description": "This backend is built with Express, MongoDB, JWT authentication, and Cloudinary image upload support. It is designed to serve the restaurant project frontend with the following core features:",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
