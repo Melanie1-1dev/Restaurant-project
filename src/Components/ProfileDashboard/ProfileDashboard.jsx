@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'lucide-react';
 import { 
   LayoutDashboard, 
   ShoppingBag, 
@@ -196,7 +197,7 @@ export default function ProfileDashboard() {
               </div>
             </div>
           </div>
-          <button className="logout-button" onClick={() => alert("Simulating app lifecycle log out routine...")}><LogOut size={16} /> <span>Logout</span></button>
+      <button className="logout-button" onClick={() => {alert("Simulating app lifecycle log out routine..."); navigate("/");}}><LogOut size={16} /> <span>Logout</span></button>
         </aside>
 
         {/* --- MAIN CONTENT AREA --- */}
