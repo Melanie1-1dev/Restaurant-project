@@ -1,7 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RestaurantOverview.css';
-import { Link } from 'react-router-dom';
+
 const RestaurantOverview = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    price: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const navigate = useNavigate();
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Check if all required fields are filled
+  const isFormValid = formData.name.trim() !== '' && 
+                      formData.description.trim() !== '' && 
+                      formData.price.trim() !== '';
+
+  const handleSubmit = () => {
+    if (!isFormValid) return;
+
+    setIsSubmitting(true);
+
+    // Simulate processing
+    setTimeout(() => {
+      console.log('Menu item submitted successfully!', formData);
+      navigate('/home');
+    }, 1000);
+  };
+
   return (
     <div className="overview-viewport">
       
@@ -12,7 +48,6 @@ const RestaurantOverview = () => {
         </div>
         
         <nav className="sidebar-nav-tree">
-          {/* Step 1 */}
           <div className="nav-step-block">
             <div className="step-row-header">
               <span className="step-row-num">1.</span>
@@ -21,7 +56,6 @@ const RestaurantOverview = () => {
             <div className="step-row-subtext">Restaurant information</div>
           </div>
           
-          {/* Step 2 Cluster */}
           <div className="nav-step-block active-cluster">
             <div className="step-row-header">
               <span className="step-row-num">2.</span>
@@ -34,7 +68,6 @@ const RestaurantOverview = () => {
             </div>
           </div>
           
-          {/* Step 3 */}
           <div className="nav-step-block">
             <div className="step-row-header">
               <span className="step-row-num">3.</span>
@@ -47,7 +80,6 @@ const RestaurantOverview = () => {
             </div>
           </div>
 
-          {/* Step 4 Footer Anchor */}
           <div className="nav-step-footer-block">
             <div className="footer-step-indicator-row">
               <div className="footer-step-circle">4</div>
@@ -60,7 +92,6 @@ const RestaurantOverview = () => {
       {/* RIGHT MAIN WORKSPACE CONTENT */}
       <main className="overview-workspace">
         
-        {/* Workspace Top Header Utilities */}
         <header className="workspace-header-bar">
           <h1 className="workspace-view-title">Overview</h1>
           
@@ -81,10 +112,8 @@ const RestaurantOverview = () => {
           </div>
         </header>
 
-        {/* Dynamic Form Workspace Scrolling View */}
         <div className="workspace-form-scroll-container">
           
-          {/* Horizontal Pill Category Selector Tabs */}
           <div className="horizontal-menu-pill-tabs">
             <button className="menu-pill-tab active">Drink</button>
             <button className="menu-pill-tab">Starter</button>
@@ -93,24 +122,31 @@ const RestaurantOverview = () => {
             <button className="menu-pill-tab">Main</button>
           </div>
 
-          {/* Minimalist Borderless Profile Input Sheet */}
           <form className="menu-builder-minimal-form" onSubmit={(e) => e.preventDefault()}>
             
             <div className="minimal-form-group">
-              <label className="minimal-field-label">Name</label>
+              <label className="minimal-field-label">Name <span className="required">*</span></label>
               <input 
                 type="text" 
+                name="name"
                 placeholder="Menu Name" 
                 className="minimal-text-input-field" 
+                value={formData.name}
+                onChange={handleChange}
+                required
               />
             </div>
 
             <div className="minimal-form-group">
-              <label className="minimal-field-label">Menu description</label>
+              <label className="minimal-field-label">Menu description <span className="required">*</span></label>
               <input 
                 type="text" 
+                name="description"
                 placeholder="Ingredients" 
                 className="minimal-text-input-field" 
+                value={formData.description}
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -122,21 +158,27 @@ const RestaurantOverview = () => {
             </div>
 
             <div className="minimal-form-group">
-              <label className="minimal-field-label">Price</label>
+              <label className="minimal-field-label">Price <span className="required">*</span></label>
               <input 
                 type="text" 
+                name="price"
                 placeholder="RWF" 
                 className="minimal-text-input-field" 
+                value={formData.price}
+                onChange={handleChange}
+                required
               />
             </div>
 
-            {/* Action Group Block Layout */}
             <div className="menu-builder-action-buttons-row">
-     <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <button type="button" formAction={'submitt'} className="action-pill-btn brand-orange-bg">
-                  Submit
-                </button>
-              </Link>
+              <button 
+                type="button" 
+                className="action-pill-btn brand-orange-bg"
+                onClick={handleSubmit}
+                disabled={!isFormValid || isSubmitting}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </button>
             </div>
 
           </form>
