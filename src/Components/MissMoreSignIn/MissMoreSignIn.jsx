@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';   // ← Added this
 import './MissMoreSignIn.css';
 
 const MissMoreSignIn = () => {
@@ -6,16 +7,28 @@ const MissMoreSignIn = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
+  const navigate = useNavigate();   // ← Navigation hook
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Logging in with:', { username, password, rememberMe });
+
+    // Simulate successful login (replace with real auth logic later)
+    setTimeout(() => {
+      navigate('/home');        // ← Redirect to home page
+    }, 800);
   };
 
   // Google Sign-In Handler
   const handleGoogleSignIn = () => {
     console.log('Initiating Google Sign-In...');
-    // Replace this with your actual Auth provider logic (Firebase, Auth0, etc.)
+    // Replace with real Google/Firebase/Auth0 logic
     alert('Google login initiated!');
+
+    // Simulate success and redirect
+    setTimeout(() => {
+      navigate('/home');
+    }, 1000);
   };
 
   return (
