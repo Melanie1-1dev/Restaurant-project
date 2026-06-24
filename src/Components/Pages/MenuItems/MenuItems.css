@@ -120,7 +120,17 @@ body,
 
 .nav-item.active {
   background-color: var(--primary-accent);
-  color: #FFFFFF;
+  color: #e68b8b;
+}
+.sidebar {
+  border: 3px solid red !important;
+}
+
+
+
+.nav-item:hover {
+  background: rgb(255, 254, 253) !important;
+  color: black !important;
 }
 
 .revenue-card {
