@@ -131,6 +131,7 @@ const LinkedInIcon = () => (
         if (item === "About") {
           scrollToAbout();
         }
+        
           else if (item === "Experience") { 
           scrollToExperience();
         }   
@@ -138,7 +139,9 @@ const LinkedInIcon = () => (
         else if (item === "Contact") {
           scrollToContact();
         }
-    
+       else if(item === "Home"){
+        scrollToHome();
+       }
 
       }}
     >

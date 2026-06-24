@@ -119,7 +119,7 @@ export default function MissMoreDashbord() {
           </Link>
        <Link to="/menu-items" style={{ textDecoration: 'none' }}><button className="nav-item-btn"><Utensils size={18} /> Menu</button></Link>
       <Link to="/an-other-order" style={{textDecoration: 'none'}}><button className="nav-item-btn"><Users size={18} /> Customers</button></Link>
-          <button className="nav-item-btn"><Settings size={18} /> Settings</button>
+       <Link to="/profile-dashboard" style={{textDecoration: 'none'}}> <button className="nav-item-btn"><Settings size={18} /> Settings</button> </Link>
         </div>
 
         <div className="kitchen-status-card">
