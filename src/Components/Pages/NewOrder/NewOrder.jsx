@@ -83,17 +83,50 @@ export default function NewOrder() {
       <aside className="sidebar-navigation">
         <div className="nav-links-group">
           <div className="brand-section">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 3V11C2 13.2 3.8 15 6 15V21H8V15C10.2 15 12 13.2 12 11V3H10V10H9V3H7V10H6V3H4V10H3V3H2ZM16 3C13.8 3 12 4.8 12 7V13H14V21H16V13H18V21H20V13C22.2 13 24 11.2 24 9V3H16ZM16 11V5C17.1 5 18 5.9 18 7V11H16Z" fill="#A16207"/>
             </svg>
             <h1 className="brand-name">MissMore</h1>
           </div>
-       <Link to="/dashbord" style={{textDecoration: 'none'}}><button className="nav-item-btn"><LayoutGrid size={18} /> Dashboard</button></Link>
-        <Link to="/new-order" style={{textDecoration: 'none'}}><button className="nav-item-btn active"><Receipt size={18} /> New Order</button></Link>
-      <Link to="/menu-items" style={{textDecoration: 'none'}}><button className="nav-item-btn"><Utensils size={18} /> Menu</button></Link>
-        <Link to="/an-other-order" style={{textDecoration: 'none'}}><button className="nav-item-btn"><Users size={18} /> Customers</button></Link>
-      <Link to="/profile-dashboard" style={{textDecoration: 'none'}}><button className="nav-item-btn"><Settings size={18} /> Settings</button> </Link>
+
+          {/* Home Link */}
+          <Link to="/home" style={{ textDecoration: 'none' }}>
+            <button className="nav-item-btn">
+              <LayoutGrid size={18} /> Home
+            </button>
+          </Link>
+
+          <Link to="/dashbord" style={{ textDecoration: 'none' }}>
+            <button className="nav-item-btn">
+              <LayoutGrid size={18} /> Dashboard
+            </button>
+          </Link>
+
+          <Link to="/new-order" style={{ textDecoration: 'none' }}>
+            <button className="nav-item-btn active">
+              <Receipt size={18} /> New Order
+            </button>
+          </Link>
+
+          <Link to="/menu-items" style={{ textDecoration: 'none' }}>
+            <button className="nav-item-btn">
+              <Utensils size={18} /> Menu
+            </button>
+          </Link>
+
+          <Link to="/an-other-order" style={{ textDecoration: 'none' }}>
+            <button className="nav-item-btn">
+              <Users size={18} /> Customers
+            </button>
+          </Link>
+
+          <Link to="/profile-dashboard" style={{ textDecoration: 'none' }}>
+            <button className="nav-item-btn">
+              <Settings size={18} /> Settings
+            </button>
+          </Link>
         </div>
+
         <div className="kitchen-status-card">
           <p className="kitchen-status-title">Kitchen Status</p>
           <div className="kitchen-status-badge">
@@ -164,7 +197,6 @@ export default function NewOrder() {
                   <div className="food-card-body">
                     <h4 className="food-card-title">{food.name}</h4>
                     <p className="food-card-desc">{food.desc}</p>
-                    {/* CRITICAL ACTION: Triggers handleAddToOrder handler */}
                     <button 
                       onClick={() => handleAddToOrder(food)} 
                       className="add-order-action-btn"
@@ -195,7 +227,6 @@ export default function NewOrder() {
                     <h5 className="cart-item-name">{item.name}</h5>
                     <div className="cart-item-controls">
                       <div className="qty-stepper-box">
-                        {/* CRITICAL ACTIONS: Stepper Increments / Decrements */}
                         <button onClick={() => handleUpdateQuantity(item.id, -1)} className="stepper-btn">
                           <Minus size={12} />
                         </button>
@@ -204,7 +235,6 @@ export default function NewOrder() {
                           <Plus size={12} />
                         </button>
                       </div>
-                      {/* CRITICAL ACTION: Wipe item clean from order array list */}
                       <button onClick={() => handleRemoveFromCart(item.id)} className="remove-item-link">
                         Remove
                       </button>

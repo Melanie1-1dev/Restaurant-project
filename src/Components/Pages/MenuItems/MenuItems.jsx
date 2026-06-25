@@ -2,6 +2,7 @@ import React from 'react';
 import './MenuItems.css';
 import { Link } from 'react-router-dom';
 import { 
+  LayoutGrid, 
   LayoutDashboard, 
   ShoppingBag, 
   UtensilsCrossed, 
@@ -91,38 +92,50 @@ const MenuItems = () => {
       {/* SIDEBAR */}
       <aside className="sidebar">
         <div className="brand">
-          
           <h1 className="brand-name">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 3V11C2 13.2 3.8 15 6 15V21H8V15C10.2 15 12 13.2 12 11V3H10V10H9V3H7V10H6V3H4V10H3V3H2ZM16 3C13.8 3 12 4.8 12 7V13H14V21H16V13H18V21H20V13C22.2 13 24 11.2 24 9V3H16ZM16 11V5C17.1 5 18 5.9 18 7V11H16Z" fill="#A16207"/>
             </svg>
-            MissMore</h1>
+            MissMore
+          </h1>
           <p className="brand-sub">Kitchen Management</p>
         </div>
 
         <nav className="nav-menu">
+          {/* Home Link */}
+          <Link to="/home" className="nav-link-wrapper"> 
+            <div className="nav-item">
+              <LayoutGrid size={20} />
+              <span>Home</span>
+            </div>
+          </Link>
+
           <Link to="/dashbord" className="nav-link-wrapper"> 
             <div className="nav-item">
               <LayoutDashboard size={20} />
               <span>Dashboard</span>
             </div>
           </Link>
+
           <Link to="/new-order" className="nav-link-wrapper"> 
             <div className="nav-item">
               <ShoppingBag size={20} />
               <span>Orders</span>
             </div>
           </Link>
+
           <div className="nav-item active">
             <UtensilsCrossed size={20} />
             <span>Menu</span>
           </div>
+
           <Link to="/an-other-order" className="nav-link-wrapper">    
             <div className="nav-item">
               <Users size={20} />
               <span>Customers</span>
             </div>
           </Link>
+
           <Link to="/profile-dashboard" className="nav-link-wrapper">    
             <div className="nav-item">
               <Settings size={20} />
