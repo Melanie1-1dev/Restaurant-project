@@ -725,3 +725,14 @@ input  { font-family: inherit; outline: none; border: none; }
     text-align: center;
   }
 }
+.logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Slightly larger in the footer */
+.footer-logo .logo-img {
+  height: 56px;
+}

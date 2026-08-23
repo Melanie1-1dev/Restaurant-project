@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import chef_img from "../../assets/chef.jpg";
+import logo from "../../assets/logo.jpg";          // ← your new logo
 
 const CITIES = ["Kigali", "Kampala", "Imena", "Arusha", "Nairobi", "Heaven"];
 
@@ -117,7 +118,10 @@ export default function HomePage() {
     <div className="home-root">
       {/* ── HEADER ── */}
       <header className="home-header">
-        <div className="home-logo">Miss<span>More</span></div>
+        {/* Logo */}
+        <div className="home-logo">
+          <img src={logo} alt="Fast Food Logo" className="logo-img" />
+        </div>
 
         <nav className="home-nav">
           {["Home", "About", "Experience", "Contact"].map((item) => (
@@ -305,17 +309,17 @@ export default function HomePage() {
       {/* ── FULL FOOTER ── */}
       <footer className="home-footer" id="footer-section">
         <div className="footer-container">
-          {/* Main Footer Content */}
           <div className="footer-main">
-            {/* Left - Brand */}
+            {/* Brand / Logo */}
             <div className="footer-brand">
-              <div className="home-logo footer-logo">Miss<span>More</span></div>
+              <div className="home-logo footer-logo">
+                <img src={logo} alt="Fast Food Logo" className="logo-img" />
+              </div>
               <p className="footer-description">
                 Delivering happy, delicious food with exceptional service.
                 Your satisfaction is our priority. We combine tradition and modernity in every delivery.
               </p>
 
-              {/* Rating */}
               <div className="footer-rating">
                 <div className="rating-circle">4.8/5</div>
                 <div>
