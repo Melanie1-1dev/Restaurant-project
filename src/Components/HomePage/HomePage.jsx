@@ -5,29 +5,30 @@ import chef_img from "../../assets/chef.jpg";
 
 const CITIES = ["Kigali", "Kampala", "Imena", "Arusha", "Nairobi", "Heaven"];
 
+const scrollToHome = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 const scrollToAbout = () => {
   const element = document.getElementById("home-section");
-  if(element) {
+  if (element) {
     element.scrollIntoView({ behavior: "smooth" });
   }
 };
 
 const scrollToExperience = () => {
   const element = document.getElementById("testimonial-section");
-  if(element) {
+  if (element) {
     element.scrollIntoView({ behavior: "smooth" });
   }
 };
-
 
 const scrollToContact = () => {
-  const element = document.getElementById("footer-section");  
-  if(element) {
+  const element = document.getElementById("footer-section");
+  if (element) {
     element.scrollIntoView({ behavior: "smooth" });
   }
 };
-
-
 
 const CATEGORIES = [
   { id: 1, name: "Pizza", count: 164, image: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?q=80&w=400&auto=format&fit=crop" },
@@ -86,32 +87,31 @@ export default function HomePage() {
     setSearch(city);
   }
 
-
   const FacebookIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-  </svg>
-);
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+    </svg>
+  );
 
-const InstagramIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2" fill="none"/>
-    <circle cx="12" cy="12" r="4" fill="currentColor"/>
-    <circle cx="17" cy="7" r="1.5" fill="currentColor"/>
-  </svg>
-);
+  const InstagramIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2" fill="none" />
+      <circle cx="12" cy="12" r="4" fill="currentColor" />
+      <circle cx="17" cy="7" r="1.5" fill="currentColor" />
+    </svg>
+  );
 
-const XIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25l-7.165 8.43L3.75 2.25H2.25l7.59 10.95L2.25 21.75h3.09l6.615-7.8 6.59 7.8h3.09L15.82 12l7.424-9.75z"/>
-  </svg>
-);
+  const XIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.244 2.25l-7.165 8.43L3.75 2.25H2.25l7.59 10.95L2.25 21.75h3.09l6.615-7.8 6.59 7.8h3.09L15.82 12l7.424-9.75z" />
+    </svg>
+  );
 
-const LinkedInIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-.5 15.5v-9h-3v9h3zm-11 0v-9h3v9h-3zm-1-12a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/>
-  </svg>
-);
+  const LinkedInIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-.5 15.5v-9h-3v9h3zm-11 0v-9h3v9h-3zm-1-12a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z" />
+    </svg>
+  );
 
   return (
     <div className="home-root">
@@ -120,79 +120,73 @@ const LinkedInIcon = () => (
         <div className="home-logo">Miss<span>More</span></div>
 
         <nav className="home-nav">
-  {["Home", "About", "Experience", "Contact"].map(item => (
-    <button
-      key={item}
-      className={`home-nav-link${activeNav === item ? " active" : ""}`}
-      onClick={() => {
-        setActiveNav(item);
-        
-        // If they click "About", execute our scrolling function!
-        if (item === "About") {
-          scrollToAbout();
-        }
-        
-          else if (item === "Experience") { 
-          scrollToExperience();
-        }   
+          {["Home", "About", "Experience", "Contact"].map((item) => (
+            <button
+              key={item}
+              className={`home-nav-link${activeNav === item ? " active" : ""}`}
+              onClick={() => {
+                setActiveNav(item);
 
-        else if (item === "Contact") {
-          scrollToContact();
-        }
-       else if(item === "Home"){
-        scrollToHome();
-       }
+                if (item === "Home") {
+                  scrollToHome();
+                } else if (item === "About") {
+                  scrollToAbout();
+                } else if (item === "Experience") {
+                  scrollToExperience();
+                } else if (item === "Contact") {
+                  scrollToContact();
+                }
+              }}
+            >
+              {item}
+            </button>
+          ))}
+          <button
+            className="home-nav-link bold"
+            onClick={() => navigate("/dashbord")}
+          >
+            Dashboard
+          </button>
+        </nav>
 
-      }}
-    >
-      {item}
-    </button>
-  ))}
-  <button
-    className="home-nav-link bold"
-    onClick={() => navigate("/dashbord")}
-  >
-    Dashboard
-  </button>
-</nav>
         <div className="home-header-icons">
           <button className="home-icon-btn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
           </button>
 
           <button className="home-icon-btn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="9"  cy="21" r="1"/>
-              <circle cx="20" cy="21" r="1"/>
-              <path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.69L23 6H6"/>
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.69L23 6H6" />
             </svg>
           </button>
 
           <button className="home-icon-btn" onClick={() => navigate("/login")}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
             </svg>
           </button>
 
           <button className="home-bell-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-              <path d="M13.73 21a2 2 0 01-3.46 0"/>
+              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 01-3.46 0" />
             </svg>
           </button>
         </div>
       </header>
 
       {/* ── HERO SECTION ── */}
-      <section className="home-hero">
+      <section className="home-hero" id="hero-section">
         <div className="home-hero-bg" />
         <div className="home-orange-circle" />
         <img src={chef_img} alt="Chef" className="home-chef-img" />
@@ -217,29 +211,29 @@ const LinkedInIcon = () => (
             <div className="home-search-wrap">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
               <input
                 className="home-search-input"
                 type="text"
                 placeholder="Search restaurant, cuisines....."
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
             <button className="home-search-btn" type="submit">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
               Search
             </button>
           </form>
 
           <div className="home-cities">
-            {CITIES.map(city => (
+            {CITIES.map((city) => (
               <button
                 key={city}
                 className="home-city-pill"
@@ -265,11 +259,13 @@ const LinkedInIcon = () => (
         </div>
 
         <div className="categories-layout-grid">
-          {CATEGORIES.map(category => (
-            <div 
-              key={category.id} 
+          {CATEGORIES.map((category) => (
+            <div
+              key={category.id}
               className="category-display-card"
-              style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.75)), url(${category.image})` }}
+              style={{
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.75)), url(${category.image})`
+              }}
             >
               <div className="category-meta-info">
                 <h3 className="category-card-title">{category.name}</h3>
@@ -286,7 +282,7 @@ const LinkedInIcon = () => (
         <h2 className="testimonials-main-title">What Our Clients Say</h2>
 
         <div className="testimonials-cards-wrapper">
-          {TESTIMONIALS.map(item => (
+          {TESTIMONIALS.map((item) => (
             <div key={item.id} className="testimonial-opinion-card">
               <div className="testimonial-stars-row">
                 {"★★★★★".split("").map((star, index) => (
@@ -306,136 +302,113 @@ const LinkedInIcon = () => (
         </div>
       </section>
 
-      {/* ── NEWSLETTER ENVELOPE BOX ── */}
-
-
       {/* ── FULL FOOTER ── */}
-<footer className="home-footer" id="footer-section">
-  <div className="footer-container">
-    {/* Main Footer Content */}
-    <div className="footer-main">
-      {/* Left - Brand */}
-      <div className="footer-brand">
-        <div className="home-logo footer-logo">Miss<span>More</span></div>
-        <p className="footer-description">
-          Delivering happy, delicious food with exceptional service. 
-          Your satisfaction is our priority. We combine tradition and modernity in every delivery.
-        </p>
+      <footer className="home-footer" id="footer-section">
+        <div className="footer-container">
+          {/* Main Footer Content */}
+          <div className="footer-main">
+            {/* Left - Brand */}
+            <div className="footer-brand">
+              <div className="home-logo footer-logo">Miss<span>More</span></div>
+              <p className="footer-description">
+                Delivering happy, delicious food with exceptional service.
+                Your satisfaction is our priority. We combine tradition and modernity in every delivery.
+              </p>
 
-        {/* Rating */}
-        <div className="footer-rating">
-          <div className="rating-circle">4.8/5</div>
-          <div>
-            <div className="rating-stars">★★★★★</div>
-            <p>Based on 1,234 customer reviews</p>
+              {/* Rating */}
+              <div className="footer-rating">
+                <div className="rating-circle">4.8/5</div>
+                <div>
+                  <div className="rating-stars">★★★★★</div>
+                  <p>Based on 1,234 customer reviews</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Benefits */}
+            <div className="footer-column">
+              <h4>BENEFITS</h4>
+              <ul>
+                <li>🚀 Order Online Now</li>
+                <li>📍 Track Reservation</li>
+                <li>🍽️ Catering Booking</li>
+                <li>🚚 Daily Delivery Service</li>
+              </ul>
+            </div>
+
+            {/* Quick Links */}
+            <div className="footer-column">
+              <h4>QUICK LINKS</h4>
+              <ul>
+                <li><a href="#home-section">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">FAQ</a></li>
+              </ul>
+            </div>
+
+            {/* Contact Us */}
+            <div className="footer-column">
+              <h4>CONTACT US</h4>
+              <ul>
+                <li>📍 1234 Main Street, Kigali, Rwanda</li>
+                <li>📞 +250 788 123 456</li>
+                <li>✉️ hello@missmore.rw</li>
+              </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div className="footer-newsletter">
+              <h4>SUBSCRIBE TO NEWSLETTER</h4>
+              <form className="newsletter-action-form" onSubmit={handleSubscribe}>
+                <input
+                  type="email"
+                  placeholder="Your Email address..."
+                  className="newsletter-email-field"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <button type="submit" className="newsletter-submit-btn">Subscribe</button>
+              </form>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="footer-bottom">
+            <div className="footer-social">
+              <a href="#" aria-label="Facebook" className="social-icon">
+                <FacebookIcon />
+              </a>
+              <a href="#" aria-label="Instagram" className="social-icon">
+                <InstagramIcon />
+              </a>
+              <a href="#" aria-label="X (Twitter)" className="social-icon">
+                <XIcon />
+              </a>
+              <a href="#" aria-label="LinkedIn" className="social-icon">
+                <LinkedInIcon />
+              </a>
+            </div>
+
+            <div className="footer-apps">
+              <a href="#" className="app-badge google-play">
+                GET IT ON<br /><strong>Google Play</strong>
+              </a>
+              <a href="#" className="app-badge app-store">
+                Download on the<br /><strong>App Store</strong>
+              </a>
+            </div>
+
+            <div className="footer-copyright">
+              © 2026 MissMore. All rights reserved.<br />
+              Privacy Policy | Terms of Service
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Benefits */}
-      <div className="footer-column">
-        <h4>BENEFITS</h4>
-        <ul>
-          <li>🚀 Order Online Now</li>
-          <li>📍 Track Reservation</li>
-          <li>🍽️ Catering Booking</li>
-          <li>🚚 Daily Delivery Service</li>
-        </ul>
-      </div>
-
-      {/* Quick Links */}
-      <div className="footer-column">
-        <h4>QUICK LINKS</h4>
-        <ul>
-          <li><a href="#home-section">Home</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Terms</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-
-      {/* Contact Us */}
-      <div className="footer-column">
-        <h4>CONTACT US</h4>
-        <ul>
-          <li>📍 1234 Main Street, Kigali, Rwanda</li>
-          <li>📞 +250 788 123 456</li>
-          <li>✉️ hello@missmore.rw</li>
-        </ul>
-      </div>
-
-      {/* Newsletter */}
-      <div className="footer-newsletter">
-        <h4>SUBSCRIBE TO NEWSLETTER</h4>
-        <form className="newsletter-action-form" onSubmit={handleSubscribe}>
-          <input 
-            type="email" 
-            placeholder="Your Email address..." 
-            className="newsletter-email-field"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-          <button type="submit" className="newsletter-submit-btn">Subscribe</button>
-        </form>
-      </div>
-    </div>
-
-    {/* Bottom Bar */}
-    <div className="footer-bottom">
-      <div className="footer-social">
-        <a href="#" aria-label="Facebook" className="social-icon">
-          <FacebookIcon />
-        </a>
-        <a href="#" aria-label="Instagram" className="social-icon">
-          <InstagramIcon />
-        </a>
-        <a href="#" aria-label="X (Twitter)" className="social-icon">
-          <XIcon />
-        </a>
-        <a href="#" aria-label="LinkedIn" className="social-icon">
-          <LinkedInIcon />
-        </a>
-      </div>
-
-      <div className="footer-apps">
-        <a href="#" className="app-badge google-play">
-          GET IT ON<br/><strong>Google Play</strong>
-        </a>
-        <a href="#" className="app-badge app-store">
-          Download on the<br/><strong>App Store</strong>
-        </a>
-      </div>
-
-      <div className="footer-copyright">
-        © 2026 MissMore. All rights reserved.<br />
-        Privacy Policy | Terms of Service
-      </div>
-    </div>
-  </div>
-</footer>
-
-
-      {/* <section className="home-newsletter-section" id="footer-section">
-        <div className="newsletter-inner-box">
-        <h1> <span className="color-blue"> Miss </span> <span className="color-orange">More</span></h1>
-          <p className="newsletter-subtext">Subscribe to our newsletter for exclusive options, chef recipes, and weekly updates.</p>
-          
-          <form className="newsletter-action-form" onSubmit={handleSubscribe}>
-            <input 
-              type="email" 
-              placeholder="Your Email address..." 
-              className="newsletter-email-field"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-            />
-            <button type="submit" className="newsletter-submit-btn">Subscribe</button>
-          </form>
-        </div>
-      </section> */}
+      </footer>
     </div>
   );
 }
