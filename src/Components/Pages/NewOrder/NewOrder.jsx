@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import logo from '../../../assets/logo.jpg';  // ← your new logo
 import { 
   LayoutGrid, 
   Receipt, 
@@ -10,14 +11,17 @@ import {
   UserPlus, 
   Plus, 
   Minus, 
-  Check 
+  Check,
+  Loader2
 } from 'lucide-react';
 import './NewOrder.css';
 
 export default function NewOrder() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [orderNumber, setOrderNumber] = useState('');
   
-  // 1. Initialize the cart as an empty array or with default objects
   const [cart, setCart] = useState([
     { id: 1, name: 'Authentic Jollof Rice', price: 18.50, qty: 1, img: 'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&w=150&q=80' },
     { id: 2, name: 'Grilled Chicken', price: 22.00, qty: 1, img: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=150&q=80' },
@@ -34,8 +38,6 @@ export default function NewOrder() {
   ];
 
   /* ── CART INTERACTION HANDLERS ── */
-  
-  // Add item from catalog to checkout panel
   const handleAddToOrder = (item) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
@@ -48,7 +50,6 @@ export default function NewOrder() {
     });
   };
 
-  // Adjust quantities inside the checkout panel
   const handleUpdateQuantity = (id, amount) => {
     setCart(prevCart => 
       prevCart.map(item => {
@@ -61,12 +62,35 @@ export default function NewOrder() {
     );
   };
 
-  // Wipe item entirely out of order list
   const handleRemoveFromCart = (id) => {
     setCart(prevCart => prevCart.filter(item => item.id !== id));
   };
 
-  // ── MATHEMATICAL LIVE PRICING ENGINE ──
+  /* ── PLACE ORDER LOGIC ── */
+  const handlePlaceOrder = () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty. Please add some items first.");
+      return;
+    }
+
+    setIsPlacingOrder(true);
+
+    // Simulate API / processing delay
+    setTimeout(() => {
+      const newOrderNumber = `ORD-${Math.floor(1000 + Math.random() * 9000)}`;
+      setOrderNumber(newOrderNumber);
+      setIsPlacingOrder(false);
+      setOrderSuccess(true);
+      setCart([]); // Clear cart after successful order
+    }, 1800);
+  };
+
+  const handleStartNewOrder = () => {
+    setOrderSuccess(false);
+    setOrderNumber('');
+  };
+
+  // ── PRICING ──
   const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
   const tax = subtotal * 0.08;
   const total = subtotal + tax;
@@ -79,17 +103,14 @@ export default function NewOrder() {
   return (
     <div className="new-order-container">
       
-      {/* Sidebar Layout */}
+      {/* Sidebar */}
       <aside className="sidebar-navigation">
         <div className="nav-links-group">
-          <div className="brand-section">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 3V11C2 13.2 3.8 15 6 15V21H8V15C10.2 15 12 13.2 12 11V3H10V10H9V3H7V10H6V3H4V10H3V3H2ZM16 3C13.8 3 12 4.8 12 7V13H14V21H16V13H18V21H20V13C22.2 13 24 11.2 24 9V3H16ZM16 11V5C17.1 5 18 5.9 18 7V11H16Z" fill="#A16207"/>
-            </svg>
-            <h1 className="brand-name">MissMore</h1>
-          </div>
+            {/* Logo */}
+                  <div className="home-logo">
+                    <img src={logo} alt="Fast Food Logo" className="logo-img" />
+                  </div>
 
-          {/* Home Link */}
           <Link to="/home" style={{ textDecoration: 'none' }}>
             <button className="nav-item-btn">
               <LayoutGrid size={18} /> Home
@@ -136,7 +157,7 @@ export default function NewOrder() {
         </div>
       </aside>
 
-      {/* Primary Workspace Frame */}
+      {/* Main Workspace */}
       <main className="workspace-canvas">
         <header className="top-appbar">
           <h2 className="appbar-title">New Order</h2>
@@ -212,57 +233,116 @@ export default function NewOrder() {
             </div>
           </section>
 
-          {/* Dynamic Billing Layout */}
+          {/* Billing / Cart */}
           <aside className="billing-cart-aside">
             <div className="cart-header-block">
               <h3 className="cart-headline">Current Order</h3>
-              <span className="cart-counter-pill">{totalItemsCount} {totalItemsCount === 1 ? 'Item' : 'Items'}</span>
+              <span className="cart-counter-pill">
+                {totalItemsCount} {totalItemsCount === 1 ? 'Item' : 'Items'}
+              </span>
             </div>
 
-            <div className="cart-items-scroller">
-              {cart.map((item) => (
-                <div key={item.id} className="cart-item-node">
-                  <img className="cart-item-thumb" src={item.img} alt={item.name} />
-                  <div className="cart-item-details">
-                    <h5 className="cart-item-name">{item.name}</h5>
-                    <div className="cart-item-controls">
-                      <div className="qty-stepper-box">
-                        <button onClick={() => handleUpdateQuantity(item.id, -1)} className="stepper-btn">
-                          <Minus size={12} />
-                        </button>
-                        <span className="stepper-value">{item.qty}</span>
-                        <button onClick={() => handleUpdateQuantity(item.id, 1)} className="stepper-btn">
-                          <Plus size={12} />
-                        </button>
-                      </div>
-                      <button onClick={() => handleRemoveFromCart(item.id)} className="remove-item-link">
-                        Remove
-                      </button>
-                    </div>
-                  </div>
-                  <span className="cart-item-price-label">${(item.price * item.qty).toFixed(2)}</span>
+            {/* SUCCESS STATE */}
+            {orderSuccess ? (
+              <div className="order-success-box">
+                <div className="success-circle">
+                  <Check size={32} color="#fff" />
                 </div>
-              ))}
-              {cart.length === 0 && (
-                <p className="empty-cart-text">Your checkout basket is empty.</p>
-              )}
-            </div>
-
-            <div className="checkout-calculation-box">
-              <div className="calc-row"><span>Subtotal</span><span className="calc-val">${subtotal.toFixed(2)}</span></div>
-              <div className="calc-row"><span>Tax (8%)</span><span className="calc-val">${tax.toFixed(2)}</span></div>
-              <div className="calc-row-total">
-                <span className="total-label-text">Total</span>
-                <span className="total-price-text">${total.toFixed(2)}</span>
+                <h3 className="success-title">Order Placed Successfully!</h3>
+                <p className="success-order-number">
+                  Order Number: <strong>{orderNumber}</strong>
+                </p>
+                <p className="success-message">
+                  Your order has been sent to the kitchen.
+                </p>
+                <button 
+                  className="checkout-submit-btn"
+                  onClick={handleStartNewOrder}
+                >
+                  Start New Order
+                </button>
               </div>
-              <button className="checkout-submit-btn" onClick={() => alert('Processing Checkout Order Engine...')}>
-                <Check size={18} /> Place Order
-              </button>
-            </div>
+            ) : (
+              <>
+                <div className="cart-items-scroller">
+                  {cart.map((item) => (
+                    <div key={item.id} className="cart-item-node">
+                      <img className="cart-item-thumb" src={item.img} alt={item.name} />
+                      <div className="cart-item-details">
+                        <h5 className="cart-item-name">{item.name}</h5>
+                        <div className="cart-item-controls">
+                          <div className="qty-stepper-box">
+                            <button 
+                              onClick={() => handleUpdateQuantity(item.id, -1)} 
+                              className="stepper-btn"
+                              disabled={isPlacingOrder}
+                            >
+                              <Minus size={12} />
+                            </button>
+                            <span className="stepper-value">{item.qty}</span>
+                            <button 
+                              onClick={() => handleUpdateQuantity(item.id, 1)} 
+                              className="stepper-btn"
+                              disabled={isPlacingOrder}
+                            >
+                              <Plus size={12} />
+                            </button>
+                          </div>
+                          <button 
+                            onClick={() => handleRemoveFromCart(item.id)} 
+                            className="remove-item-link"
+                            disabled={isPlacingOrder}
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                      <span className="cart-item-price-label">
+                        ${(item.price * item.qty).toFixed(2)}
+                      </span>
+                    </div>
+                  ))}
+
+                  {cart.length === 0 && (
+                    <p className="empty-cart-text">Your checkout basket is empty.</p>
+                  )}
+                </div>
+
+                <div className="checkout-calculation-box">
+                  <div className="calc-row">
+                    <span>Subtotal</span>
+                    <span className="calc-val">${subtotal.toFixed(2)}</span>
+                  </div>
+                  <div className="calc-row">
+                    <span>Tax (8%)</span>
+                    <span className="calc-val">${tax.toFixed(2)}</span>
+                  </div>
+                  <div className="calc-row-total">
+                    <span className="total-label-text">Total</span>
+                    <span className="total-price-text">${total.toFixed(2)}</span>
+                  </div>
+
+                  <button 
+                    className="checkout-submit-btn" 
+                    onClick={handlePlaceOrder}
+                    disabled={isPlacingOrder || cart.length === 0}
+                  >
+                    {isPlacingOrder ? (
+                      <>
+                        <Loader2 size={18} className="spin" /> Processing...
+                      </>
+                    ) : (
+                      <>
+                        <Check size={18} /> Place Order
+                      </>
+                    )}
+                  </button>
+                </div>
+              </>
+            )}
           </aside>
         </div>
       </main>
-      
     </div>
   );
 }
