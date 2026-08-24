@@ -107,9 +107,11 @@ export default function NewOrder() {
       <aside className="sidebar-navigation">
         <div className="nav-links-group">
             {/* Logo */}
-                  <div className="home-logo">
-                    <img src={logo} alt="Fast Food Logo" className="logo-img" />
-                  </div>
+            <Link to="/home" style={{ textDecoration: 'none' }}>
+              <div className="home-logo">
+                <img src={logo} alt="Fast Food Logo" className="logo-img" />
+              </div>
+            </Link>
 
           <Link to="/home" style={{ textDecoration: 'none' }}>
             <button className="nav-item-btn">
