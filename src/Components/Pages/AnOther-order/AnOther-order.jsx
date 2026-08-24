@@ -84,9 +84,11 @@ export default function AnOtherOrder() {
       {/* ── SIDEBAR ── */}
       <aside className="no-sidebar">
           {/* Logo */}
-                <div className="home-logo">
-                  <img src={logo} alt="Fast Food Logo" className="logo-img" />
-                </div>
+          <Link to="/home" style={{ textDecoration: 'none' }}>
+            <div className="home-logo">
+              <img src={logo} alt="Fast Food Logo" className="logo-img" />
+            </div>
+          </Link>
 
         <nav className="no-nav">
           {NAV.map(item => (
