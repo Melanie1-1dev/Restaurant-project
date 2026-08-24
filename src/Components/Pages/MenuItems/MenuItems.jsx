@@ -94,9 +94,11 @@ const MenuItems = () => {
       <aside className="sidebar">
         <div className="brand">
            {/* Logo */}
-                 <div className="home-logo">
-                   <img src={logo} alt="Fast Food Logo" className="logo-img" />
-                 </div>
+           <Link to="/home" style={{ textDecoration: 'none' }}>
+             <div className="home-logo">
+               <img src={logo} alt="Fast Food Logo" className="logo-img" />
+             </div>
+           </Link>
           <p className="brand-sub">Kitchen Management</p>
         </div>
 
