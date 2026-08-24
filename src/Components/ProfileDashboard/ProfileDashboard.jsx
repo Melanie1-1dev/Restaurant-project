@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.jpg';  // ← your new logo
 import { 
   LayoutDashboard, 
@@ -144,16 +144,18 @@ export default function ProfileDashboard() {
       {/* --- TOP NAVBAR --- */}
       <header className="navbar">
           {/* Logo */}
-                <div className="home-logo">
-                  <img src={logo} alt="Fast Food Logo" className="logo-img" />
-                </div>
-        <nav className="navbar-links">
-          {['Overview', 'Orders', 'Menu', 'Profile'].map((item) => (
-            <button 
-              key={item} 
-              onClick={() => { setActiveTab(item); setCurrentSubPage(null); setIsEditingProfile(false); }}
-              className={`nav-link ${activeTab === item ? 'active' : ''}`}
-            >
+          <Link to="/home" style={{ textDecoration: 'none' }}>
+            <div className="home-logo">
+              <img src={logo} alt="Fast Food Logo" className="logo-img" />
+            </div>
+          </Link>
+          <nav className="navbar-links">
+            {['Overview', 'Orders', 'Menu', 'Profile'].map((item) => (
+              <button 
+                key={item} 
+                onClick={() => { setActiveTab(item); setCurrentSubPage(null); setIsEditingProfile(false); }}
+                className={`nav-link ${activeTab === item ? 'active' : ''}`}
+              >
               {item}
             </button>
           ))}
