@@ -109,10 +109,11 @@ export default function MissMoreDashbord() {
       <aside className="sidebar-navigation">
         <div className="nav-links-group">
            {/* Logo */}
+           <Link to="/home" style={{ textDecoration: 'none' }}>
                  <div className="home-logo">
                    <img src={logo} alt="Fast Food Logo" className="logo-img" />
                  </div>
-          
+          </Link>
           {/* Home Link */}
           <Link to="/home" style={{ textDecoration: 'none' }}>
             <div className="nav-item-btn active">
