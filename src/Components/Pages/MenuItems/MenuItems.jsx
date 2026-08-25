@@ -13,16 +13,15 @@ import {
   Bell, 
   HelpCircle, 
   Plus, 
+  X,
   SlidersHorizontal, 
   Grid, 
   Clock, 
   Pencil, 
-  Trash2,
-  X
+  Trash2 
 } from 'lucide-react';
 
 const MenuItems = () => {
-  // Converted to state so we can add/remove items
   const [menuItems, setMenuItems] = useState([
     {
       id: 1,
@@ -89,10 +88,8 @@ const MenuItems = () => {
     }
   ]);
 
-  // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Form state
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -102,7 +99,6 @@ const MenuItems = () => {
     image: ''
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -111,12 +107,8 @@ const MenuItems = () => {
     }));
   };
 
-  // Open modal
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  const openModal = () => setIsModalOpen(true);
 
-  // Close modal & reset form
   const closeModal = () => {
     setIsModalOpen(false);
     setFormData({
@@ -129,18 +121,16 @@ const MenuItems = () => {
     });
   };
 
-  // Add new item
   const handleAddItem = (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (!formData.name.trim() || !formData.price.trim()) {
       alert('Name and Price are required');
       return;
     }
 
     const newItem = {
-      id: Date.now(), // simple unique id
+      id: Date.now(),
       name: formData.name.trim(),
       description: formData.description.trim() || 'No description provided',
       price: formData.price.includes('RWF') ? formData.price : `${formData.price} RWF`,
@@ -149,11 +139,10 @@ const MenuItems = () => {
       image: formData.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=500&auto=format&fit=crop'
     };
 
-    setMenuItems(prev => [newItem, ...prev]); // add at the beginning
+    setMenuItems(prev => [newItem, ...prev]);
     closeModal();
   };
 
-  // Optional: Delete item
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this item?')) {
       setMenuItems(prev => prev.filter(item => item.id !== id));
@@ -174,21 +163,21 @@ const MenuItems = () => {
         </div>
 
         <nav className="nav-menu">
-          <Link to="/home" className="nav-link-wrapper"> 
+          <Link to="/home" className="nav-link-wrapper">
             <div className="nav-item">
               <LayoutGrid size={20} />
               <span>Home</span>
             </div>
           </Link>
 
-          <Link to="/dashbord" className="nav-link-wrapper"> 
+          <Link to="/dashbord" className="nav-link-wrapper">
             <div className="nav-item">
               <LayoutDashboard size={20} />
               <span>Dashboard</span>
             </div>
           </Link>
 
-          <Link to="/new-order" className="nav-link-wrapper"> 
+          <Link to="/new-order" className="nav-link-wrapper">
             <div className="nav-item">
               <ShoppingBag size={20} />
               <span>Orders</span>
@@ -200,14 +189,14 @@ const MenuItems = () => {
             <span>Menu</span>
           </div>
 
-          <Link to="/an-other-order" className="nav-link-wrapper">    
+          <Link to="/an-other-order" className="nav-link-wrapper">
             <div className="nav-item">
               <Users size={20} />
               <span>Customers</span>
             </div>
           </Link>
 
-          <Link to="/profile-dashboard" className="nav-link-wrapper">    
+          <Link to="/profile-dashboard" className="nav-link-wrapper">
             <div className="nav-item">
               <Settings size={20} />
               <span>Settings</span>
@@ -223,15 +212,18 @@ const MenuItems = () => {
         </div>
       </aside>
 
-      {/* MAIN CONTENT AREA */}
+      {/* MAIN CONTENT */}
       <main className="main-content">
-        {/* TOP BAR */}
         <header className="top-header">
           <div className="search-container">
             <Search size={18} className="search-icon" />
-            <input type="text" placeholder="Search menu items, ingredients..." className="search-input" />
+            <input
+              type="text"
+              placeholder="Search menu items, ingredients..."
+              className="search-input"
+            />
           </div>
-          
+
           <div className="header-actions">
             <button className="icon-btn">
               <Bell size={20} />
@@ -245,16 +237,15 @@ const MenuItems = () => {
                 <span className="user-name">Kagabo Jacques</span>
                 <span className="user-role">Admin</span>
               </div>
-              <img 
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" 
-                alt="Profile" 
-                className="profile-avatar" 
+              <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop"
+                alt="Profile"
+                className="profile-avatar"
               />
             </div>
           </div>
         </header>
 
-        {/* DASHBOARD TITLE & ACTIONS */}
         <div className="page-title-section">
           <h1 className="page-title">Menu Management</h1>
           <button className="add-item-btn" onClick={openModal}>
@@ -263,7 +254,7 @@ const MenuItems = () => {
           </button>
         </div>
 
-        {/* BLUE OUTLINE METRICS WRAPPER CONTAINER */}
+        {/* Metrics */}
         <div className="blue-blueprint-wrapper outline-metrics">
           <section className="metrics-summary">
             <div className="metric-card">
@@ -302,9 +293,8 @@ const MenuItems = () => {
           </section>
         </div>
 
-        {/* BLUE OUTLINE MAIN CONTENT CANVAS CONTAINER */}
+        {/* Menu Grid */}
         <div className="blue-blueprint-wrapper outline-content-canvas">
-          {/* FILTER NAVIGATION */}
           <div className="filter-toolbar">
             <div className="category-tabs">
               <button className="tab active">All</button>
@@ -314,12 +304,15 @@ const MenuItems = () => {
               <button className="tab">Drinks</button>
             </div>
             <div className="toolbar-actions">
-              <button className="toolbar-btn"><SlidersHorizontal size={18} /></button>
-              <button className="toolbar-btn active-view"><Grid size={18} /></button>
+              <button className="toolbar-btn">
+                <SlidersHorizontal size={18} />
+              </button>
+              <button className="toolbar-btn active-view">
+                <Grid size={18} />
+              </button>
             </div>
           </div>
 
-          {/* MENU ITEMS GRID */}
           <section className="menu-grid">
             {menuItems.map((item) => (
               <div className="menu-card" key={item.id}>
@@ -338,9 +331,11 @@ const MenuItems = () => {
                       <Clock size={14} /> {item.time}
                     </span>
                     <div className="item-actions">
-                      <button className="action-btn edit-btn"><Pencil size={16} /></button>
-                      <button 
-                        className="action-btn delete-btn" 
+                      <button className="action-btn edit-btn">
+                        <Pencil size={16} />
+                      </button>
+                      <button
+                        className="action-btn delete-btn"
                         onClick={() => handleDelete(item.id)}
                       >
                         <Trash2 size={16} />
@@ -351,7 +346,6 @@ const MenuItems = () => {
               </div>
             ))}
 
-            {/* ADD CATEGORY DOTTED CARD */}
             <div className="add-category-card">
               <div className="add-category-content">
                 <div className="plus-icon-container">
@@ -365,7 +359,7 @@ const MenuItems = () => {
         </div>
       </main>
 
-      {/* ===================== ADD NEW ITEM MODAL ===================== */}
+      {/* ==================== ADD ITEM MODAL ==================== */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -396,7 +390,7 @@ const MenuItems = () => {
                   value={formData.description}
                   onChange={handleChange}
                   placeholder="Short description of the item..."
-                  rows="3"
+                  rows={3}
                 />
               </div>
 
@@ -427,3 +421,45 @@ const MenuItems = () => {
 
               <div className="form-row">
                 <div className="form-group">
+                  <label>Status</label>
+                  <select
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                  >
+                    <option value="ACTIVE">ACTIVE</option>
+                    <option value="HIDDEN">HIDDEN</option>
+                    <option value="OUT OF STOCK">OUT OF STOCK</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label>Image URL</label>
+                  <input
+                    type="text"
+                    name="image"
+                    value={formData.image}
+                    onChange={handleChange}
+                    placeholder="https://..."
+                  />
+                </div>
+              </div>
+
+              <div className="form-actions">
+                <button type="button" className="cancel-btn" onClick={closeModal}>
+                  Cancel
+                </button>
+                <button type="submit" className="submit-btn">
+                  <Plus size={18} />
+                  Add Item
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MenuItems;
