@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './MenuItems.css';
-import logo from '../../../assets/logo.jpg';  // ← your new logo
+import logo from '../../../assets/logo.jpg';
 import { Link } from 'react-router-dom';
 import { 
   LayoutGrid, 
@@ -17,12 +17,13 @@ import {
   Grid, 
   Clock, 
   Pencil, 
-  Trash2 
+  Trash2,
+  X
 } from 'lucide-react';
 
 const MenuItems = () => {
-  // Mock Data for Menu Items
-  const menuItems = [
+  // Converted to state so we can add/remove items
+  const [menuItems, setMenuItems] = useState([
     {
       id: 1,
       name: "Grand Truffle Burger",
@@ -86,24 +87,93 @@ const MenuItems = () => {
       status: "ACTIVE",
       image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=500&auto=format&fit=crop"
     }
-  ];
+  ]);
+
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    price: '',
+    time: '',
+    status: 'ACTIVE',
+    image: ''
+  });
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Open modal
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Close modal & reset form
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setFormData({
+      name: '',
+      description: '',
+      price: '',
+      time: '',
+      status: 'ACTIVE',
+      image: ''
+    });
+  };
+
+  // Add new item
+  const handleAddItem = (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    if (!formData.name.trim() || !formData.price.trim()) {
+      alert('Name and Price are required');
+      return;
+    }
+
+    const newItem = {
+      id: Date.now(), // simple unique id
+      name: formData.name.trim(),
+      description: formData.description.trim() || 'No description provided',
+      price: formData.price.includes('RWF') ? formData.price : `${formData.price} RWF`,
+      time: formData.time || '10-15 min',
+      status: formData.status,
+      image: formData.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=500&auto=format&fit=crop'
+    };
+
+    setMenuItems(prev => [newItem, ...prev]); // add at the beginning
+    closeModal();
+  };
+
+  // Optional: Delete item
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this item?')) {
+      setMenuItems(prev => prev.filter(item => item.id !== id));
+    }
+  };
 
   return (
     <div className="dashboard-container">
       {/* SIDEBAR */}
       <aside className="sidebar">
         <div className="brand">
-           {/* Logo */}
-           <Link to="/home" style={{ textDecoration: 'none' }}>
-             <div className="home-logo">
-               <img src={logo} alt="Fast Food Logo" className="logo-img" />
-             </div>
-           </Link>
+          <Link to="/home" style={{ textDecoration: 'none' }}>
+            <div className="home-logo">
+              <img src={logo} alt="Fast Food Logo" className="logo-img" />
+            </div>
+          </Link>
           <p className="brand-sub">Kitchen Management</p>
         </div>
 
         <nav className="nav-menu">
-          {/* Home Link */}
           <Link to="/home" className="nav-link-wrapper"> 
             <div className="nav-item">
               <LayoutGrid size={20} />
@@ -187,7 +257,7 @@ const MenuItems = () => {
         {/* DASHBOARD TITLE & ACTIONS */}
         <div className="page-title-section">
           <h1 className="page-title">Menu Management</h1>
-          <button className="add-item-btn">
+          <button className="add-item-btn" onClick={openModal}>
             <Plus size={20} />
             <span>Add New Item</span>
           </button>
@@ -195,7 +265,6 @@ const MenuItems = () => {
 
         {/* BLUE OUTLINE METRICS WRAPPER CONTAINER */}
         <div className="blue-blueprint-wrapper outline-metrics">
-          {/* METRIC CARDS */}
           <section className="metrics-summary">
             <div className="metric-card">
               <div className="metric-icon-wrapper total-items">
@@ -203,7 +272,7 @@ const MenuItems = () => {
               </div>
               <div className="metric-details">
                 <span className="metric-label">TOTAL ITEMS</span>
-                <span className="metric-value">124</span>
+                <span className="metric-value">{menuItems.length}</span>
               </div>
             </div>
 
@@ -213,7 +282,9 @@ const MenuItems = () => {
               </div>
               <div className="metric-details">
                 <span className="metric-label">ACTIVE</span>
-                <span className="metric-value">118</span>
+                <span className="metric-value">
+                  {menuItems.filter(item => item.status === 'ACTIVE').length}
+                </span>
               </div>
             </div>
 
@@ -223,7 +294,9 @@ const MenuItems = () => {
               </div>
               <div className="metric-details">
                 <span className="metric-label">OUT OF STOCK</span>
-                <span className="metric-value">6</span>
+                <span className="metric-value">
+                  {menuItems.filter(item => item.status === 'OUT OF STOCK').length}
+                </span>
               </div>
             </div>
           </section>
@@ -266,7 +339,12 @@ const MenuItems = () => {
                     </span>
                     <div className="item-actions">
                       <button className="action-btn edit-btn"><Pencil size={16} /></button>
-                      <button className="action-btn delete-btn"><Trash2 size={16} /></button>
+                      <button 
+                        className="action-btn delete-btn" 
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -286,8 +364,66 @@ const MenuItems = () => {
           </section>
         </div>
       </main>
-    </div>
-  );
-};
 
-export default MenuItems;
+      {/* ===================== ADD NEW ITEM MODAL ===================== */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Add New Menu Item</h2>
+              <button className="close-btn" onClick={closeModal}>
+                <X size={22} />
+              </button>
+            </div>
+
+            <form onSubmit={handleAddItem} className="add-item-form">
+              <div className="form-group">
+                <label>Item Name *</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="e.g. Spicy Chicken Burger"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Description</label>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  placeholder="Short description of the item..."
+                  rows="3"
+                />
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Price *</label>
+                  <input
+                    type="text"
+                    name="price"
+                    value={formData.price}
+                    onChange={handleChange}
+                    placeholder="e.g. 7500 or 7,500 RWF"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Prep Time</label>
+                  <input
+                    type="text"
+                    name="time"
+                    value={formData.time}
+                    onChange={handleChange}
+                    placeholder="e.g. 15 min"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
