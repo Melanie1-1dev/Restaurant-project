@@ -468,7 +468,15 @@ const MenuItems = () => {
               filteredItems.map((item) => (
                 <div className="menu-card" key={item.id}>
                   <div className="card-image-container">
-                    <img src={item.image} alt={item.name} className="card-image" />
+                    <img
+                      src={item.image || DEFAULT_IMAGE}
+                      alt={item.name}
+                      className="card-image"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = DEFAULT_IMAGE;
+                      }}
+                    />
                     <span
                       className={`status-badge ${item.status
                         .toLowerCase()
